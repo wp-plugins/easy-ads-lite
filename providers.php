@@ -15,7 +15,7 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-use easyAdsNS as ezNS ;
+
 if (class_exists("provider")) {
 //  echo "Class <code>'provider'</code> already defined.\nConsider using <code>Easy Ads</code> for multiple ad providers." ;
 }

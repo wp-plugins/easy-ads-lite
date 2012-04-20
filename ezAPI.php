@@ -16,8 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (!class_exists("easyAdsNS")) {
-  class easyAdsNS { // Name Space simulation
+if (!class_exists("ezNS")) {
+  class ezNS { // Name Space simulation
     static $themeName, $CWD, $baseName, $URL, $name, $pluginName, $pluginKey ;
     static $defaults, $locale, $genOptionName, $genOptions, $nameSpaceSuffix ;
     static $isFiltered, $isPure, $gCount, $b64 ;
@@ -58,7 +58,6 @@ if (!class_exists("easyAdsNS")) {
     }
   }
 }
-use easyAdsNS as ezNS ;
 if (!class_exists("ezOption")) {
   class ezOption { // base ezOption class
     var $name, $desc, $title, $value, $type ;

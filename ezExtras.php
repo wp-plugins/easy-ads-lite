@@ -16,7 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-use easyAdsNS as ezNS ;
 define('EZSIZE', '300x250') ;
 if (!class_exists("ezExtras")) {
   class ezExtras { // static functions

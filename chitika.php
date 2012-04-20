@@ -16,8 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-use easyAdsNS as ezNS ;
 if (!class_exists('ChitikaWidget')) {
   class ChitikaWidget extends providerWidget {
     public static $provider ;

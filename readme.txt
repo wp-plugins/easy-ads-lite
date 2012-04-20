@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: chitika, clicksor, bidvertiser, adsense, google, ad, ads, advertising, income
 Requires at least: 2.8
 Tested up to: 3.3
-Stable tag: 2.00
+Stable tag: 2.01
 
 Easy Ads Lite displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -55,13 +55,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Initial release as Easy Ads Lite.
+Fixing the PHP version checker.
 
 == Upgrade Notice ==
 
 = 2.00 =
 
-Initial release as Easy Ads Lite.
+Fixing the PHP version checker.
 
 == Screenshots ==
 
@@ -108,6 +108,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.01: Fixing the PHP version checker. [Apr 19, 2012]
 * V2.00: Initial release as Easy Ads Lite. [Apr 16, 2012]
 * V1.31: Documentation and admin-page display changes. Non-critical. [Aug 30, 2011]
 * V1.30: Chitika tab mirrors the ad customization as in [Chitika](http://chitika.com/ "Compatible with AdSense").
