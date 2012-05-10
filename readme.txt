@@ -1,20 +1,20 @@
-=== Easy Ads Lite ===
+=== Easy Ads ===
 Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-ads
 Tags: chitika, clicksor, bidvertiser, adsense, google, ad, ads, advertising, income
 Requires at least: 2.8
 Tested up to: 3.3
-Stable tag: 2.02
+Stable tag: 2.03
 
-Easy Ads Lite displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
+Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
 == Description ==
 
-*Easy Ads Lite* provides a unified and intuitive interface to manage multiple ad providers on your blog. Currently supported are Chitika, BidVertiser, Clicksor, and, of course, AdSense. The list of ad providers will be expanded later on at your request.
+*Easy Ads* provides a unified and intuitive interface to manage multiple ad providers on your blog. Currently supported are Chitika, BidVertiser, Clicksor, and, of course, AdSense. The list of ad providers will be expanded later on at your request.
 
-AdSense dumped you? Don't be heartbroken; there are other fish in the sea. You may find happiness with [BidVertiser](http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404 "A fine ad provider"), Chitika or Clicksor. Use *Easy Ads Lite*, and you may get lucky!
+AdSense dumped you? Don't be heartbroken; there are other fish in the sea. You may find happiness with [BidVertiser](http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404 "A fine ad provider"), Chitika or Clicksor. Use *Easy Ads*, and you may get lucky!
 
-Note that this plugin requires PHPv5.3+. If it does not work on your web host, please consider [Easy AdSense Lite](http://wordpress.org/extend/plugins/easy-adsense-lite/ "Freely available from this directory") or [Easy AdSense Pro](http://buy.thulasidas.com/easy-adsense "The Pro version of the most popular plugin to insert AdSense on your blog for $4.95").
+Note that this plugin requires PHPv5.0+. If it does not work on your web host, please consider [Easy AdSense](http://wordpress.org/extend/plugins/easy-adsense-lite/ "Freely available from this directory") or [Easy AdSense Pro](http://buy.thulasidas.com/easy-adsense "The Pro version of the most popular plugin to insert AdSense on your blog for $4.95").
 
 = Features =
 
@@ -29,7 +29,7 @@ If you want to use only AdSense, you would want to consider my full-fledged, fea
 
 = Pro Version =
 
-*Easy Ads Lite* is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-ads "Pro version of the Easy Ads plugin for $8.95") gives you even more features.
+*Easy Ads* is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-ads "Pro version of the Easy Ads plugin for $8.95") gives you even more features.
 
 1. In the Pro version you have an *Admin* (Control Panel) tab with:
  - Option to selectively activate or deactivate various ad providers (in the *Admin* Tab).
@@ -55,24 +55,24 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Relaxing the PHP version required to 5.0.
+Renaming the plugin to drop the word Lit.
 
 == Upgrade Notice ==
 
-= 2.02 =
+= 2.03 =
 
-Relaxing the PHP version required to 5.0.
+Renaming the plugin to drop the word Lite.
 
 == Screenshots ==
 
-1. *Easy Ads Lite* "Overview" tab.
-2. How to set the options for one provider (Chitika) in *Easy Ads Lite*.
+1. *Easy Ads* "Overview" tab.
+2. How to set the options for one provider (Chitika) in *Easy Ads*.
 
 == Installation ==
 
-1. Upload the *Easy Ads Lite* plugin (the whole easy-ads-lite folder) to the '/wp-content/plugins/' directory.
+1. Upload the *Easy Ads* plugin (the whole easy-ads-lite folder) to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Go to the Settings -> *Easy Ads Lite* and enter your ad codes and options.
+3. Go to the Settings -> *Easy Ads* and enter your ad codes and options.
 
 == Frequently Asked Questions ==
 
@@ -90,17 +90,17 @@ This plugin requires PHP version 5.x or later. If it doesn't find the right vers
 
 = How can I control the appearance of the ad blocks using CSS? =
 
-All `<div>`s that *Easy Ads Lite* creates have the class attribute `easy-ads`. Furthermore, they have class attributes like `easy-ads-adsense-top`, `easy-ads-clicksor-bottom` etc., (i.e., `easy-ads-provider-position`). You can set the style for these classes in your theme `style.css` to control their appearance.
+All `<div>`s that *Easy Ads* creates have the class attribute `easy-ads`. Furthermore, they have class attributes like `easy-ads-adsense-top`, `easy-ads-clicksor-bottom` etc., (i.e., `easy-ads-provider-position`). You can set the style for these classes in your theme `style.css` to control their appearance.
 
 = Why does my code disappear when I switch to a new theme? =
 
-*Easy Ads Lite* stores the ad code and options in your database indexed by the theme name, so that if you set up the options for a particular theme, they persist even when you switch to another theme. If you ever switch back to an old theme, all your options will be reused without your worrying about it.
+*Easy Ads* stores the ad code and options in your database indexed by the theme name, so that if you set up the options for a particular theme, they persist even when you switch to another theme. If you ever switch back to an old theme, all your options will be reused without your worrying about it.
 
 But this unfortunately means that you do have to set the code *once* whenever you switch to a new theme.
 
 = Can I control how the ad blocks are formatted in each page? =
 
-Yes! In *Easy Ads Lite*, you have more options [through **custom fields**] to control ad blocks in individual posts/pages. Add custom fields with keys like **easy-ads-adsense-top, easy-ads-adsense-middle, easy-ads-adsense-bottom** and with values like **left, right, center** or **no** to have control how the ad blocks show up in each post or page. The value "**no**" suppresses all the ad blocks in the post or page for that provider.
+Yes! In *Easy Ads*, you have more options [through **custom fields**] to control ad blocks in individual posts/pages. Add custom fields with keys like **easy-ads-adsense-top, easy-ads-adsense-middle, easy-ads-adsense-bottom** and with values like **left, right, center** or **no** to have control how the ad blocks show up in each post or page. The value "**no**" suppresses all the ad blocks in the post or page for that provider.
 
 = How do I report a bug or ask a question? =
 
@@ -108,6 +108,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.03: Renaming the plugin to drop the word Lite. [May 11, 2012]
 * V2.02: Relaxing the PHP version required to 5.0 [Apr 20, 2012]
 * V2.01: Fixing the PHP version checker. [Apr 19, 2012]
 * V2.00: Initial release as Easy Ads Lite. [Apr 16, 2012]
@@ -128,4 +129,4 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 * "Linked options" -- if a widget is disabled, the corresponding options (its text, alignment etc) should be disabled using JS.
 * Specialization for Clicksor.
 * Enter Ads Easy.
-* Technical enhancements; PHP5.3 (__construct functions).
+* Technical enhancements; PHP5.0 (__construct functions).
