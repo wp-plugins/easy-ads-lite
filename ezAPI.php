@@ -26,7 +26,8 @@ if (!class_exists("ezNS")) {
       $CWD = dirname($FILE) ; // /pwd/easy-plugin
       $baseName = basename($CWD) ; // easy-plugin
       $URL = get_option('siteurl') . '/' . $PLUGINDIR . '/' . $baseName ; // http://blog/wp-content/easy-plugin
-      $name = ucwords(str_replace('-', ' ', $baseName)) ; // Easy Plugin
+      // $name = ucwords(str_replace('-', ' ', $baseName)) ; // Easy Plugin
+      $name = "Easy Ads" ; // drop the word Lite
       $pluginName = str_replace(' ', '-', $name) ; // Easy-Plugin
       $genOptionName = 'ezAPI-' . $pluginName . '-' . $themeName ; //ezAPI-Easy-Plugin
       $nameSpaceSuffix = '_' . str_replace(' ', '_', $name) ; // _Easy_Plugin
