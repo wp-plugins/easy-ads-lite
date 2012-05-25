@@ -1,10 +1,10 @@
 === Easy Ads ===
 Contributors: manojtd
-Donate link: http://buy.thulasidas.com/easy-ads
+Donate link: http://affiliates.thulasidas.com
 Tags: chitika, clicksor, bidvertiser, adsense, google, ad, ads, advertising, income
 Requires at least: 2.8
 Tested up to: 3.3
-Stable tag: 2.04
+Stable tag: 2.05
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -59,7 +59,7 @@ Bug fixes.
 
 == Upgrade Notice ==
 
-= 2.04 =
+= 2.05 =
 
 Bug fixes.
 
@@ -108,6 +108,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.05: Bug fixes. [May 25, 2012]
 * V2.04: Bug fixes. [May 18. 2012]
 * V2.03: Renaming the plugin to drop the word Lite. [May 11, 2012]
 * V2.02: Relaxing the PHP version required to 5.0 [Apr 20, 2012]

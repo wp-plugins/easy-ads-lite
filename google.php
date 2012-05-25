@@ -20,7 +20,7 @@ if (!class_exists('AdSenseWidget')) {
   class AdSenseWidget extends providerWidget {
     public static $provider ;
     function AdSenseWidget($name = 'AdSenseWidget') {
-      parent::providerWidget($name);
+      parent::providerWidget($name, self::$provider);
     }
     function widget($args, $instance) {
       extract( $args );

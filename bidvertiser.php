@@ -15,10 +15,10 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if (!class_exists('ClicksorWidget')) {
-  class ClicksorWidget extends providerWidget {
+if (!class_exists('BidVertiserWidget')) {
+  class BidVertiserWidget extends providerWidget {
     public static $provider ;
-    function ClicksorWidget($name = 'ClicksorWidget') {
+    function BidVertiserWidget($name = 'BidVertiserWidget') {
       parent::providerWidget($name, self::$provider);
     }
     function widget($args, $instance) {
@@ -34,9 +34,9 @@ if (!class_exists('ClicksorWidget')) {
     public static function setProvider(&$p) {
       self::$provider =& $p ;
     }
-  } // class ClicksorWidget
+  } // class BidVertiserWidget
 }
-if (!class_exists('Clicksor')) {
-class Clicksor extends provider {}
+if (!class_exists('BidVertiser')) {
+class BidVertiser extends provider {}
 }
 ?>

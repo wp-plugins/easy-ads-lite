@@ -43,7 +43,7 @@ $myPlugins['easy-ads'] =
     'long' => false,
     'blurb' => '<em><strong>Easy Ads</strong></em> is a multi-provider advertising plugin. This streamlined plugin ',
     'desc' => 'showcases AdSense and its alternatives on your blog',
-    'title' => '<em><strong>Easy Ads</strong></em> provides a unified and intuitive interface to manage multiple ad providers on your blog. It lets you insert ads provided by <a href="http://www.clicksor.com/pub/index.php?ref=105268" title="Careful, do not double-date with AdSense and Clicksor, they get very jealous of each other!">Clicksor</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> or <a href="http://chitika.com/" title="Compatible with AdSense">Chitika</a> into your existing and future blog posts and pages.',
+    'title' => '<em><strong>Easy Ads</strong></em> provides a unified and intuitive interface to manage multiple ad providers on your blog. It lets you insert ads provided by <a href="http://www.clicksor.com/pub/index.php?ref=105268" title="Careful, do not double-date with AdSense and Clicksor, they get very jealous of each other!">Clicksor</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&amp;Ref_PID=229404" title="Another fine ad provider">BidVertiser</a> or <a href="http://chitika.com/publishers.php?refid=manojt" title="Compatible with AdSense">Chitika</a> into your existing and future blog posts and pages.',
     'pro' => 'The Lite version of <em><strong>Easy Ads</strong></em> is fully functional.  In the Pro version, you get a filter to minimize the chance of your AdSense and other accounts getting banned. It uses a fast and effective keyword matching algorithm to examine the contents of each page on the fly and determines whether the page content could look offensive to Google and others. If so, it prevents your ads from appearing on those pages. And you can tweak the strength of the algorithm (for each provider). The Pro version also gives you control over other global options like activating and deactivating various ad providers, resetting all options etc. The Pro version also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons the ad providers may ban you.' . $needPHP53) ;
 $myPlugins['easy-google'] =
   array('value' => 'Easy Google',
@@ -148,7 +148,7 @@ if (!function_exists('renderInvite')) {
   $benefits = $plg['benefits'] ;
   $yesTip = sprintf(__('Buy %s Pro for $%s. Instant download.', 'easy-adsenser'),$plgLongName, $plgPrice) ;
   $yesTitle = __('Get the Pro version now!', 'easy-adsenser') ;
-  $noTip = __('Continue using the Lite version, and hide this message for now.', 'easy-adsenser') ;
+  $noTip = __('Continue using the Lite version, and hide this message forever. After clicking this button, please remember to save your options to hide this box for good.', 'easy-adsenser') ;
   $noTitle = __('Stay Lite', 'easy-adsenser') ;
   if (empty($benefits)) return ;
 echo <<<ENDINVITE
@@ -161,7 +161,7 @@ $benefits
 And much more. New features and bug fixes will first appear in the Pro version before being ported to this freely distributed Lite edition. </p>
 <input onmouseover="Tip('$yesTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$yesTitle')" onmouseout="UnTip()" type = "button" id = "ybutton" value = "Go Pro!" onclick = "buttonwhich('Yes')">
 <input onmouseover="Tip('$noTip', WIDTH, 200, CLICKCLOSE, true, TITLE, '$noTitle')" onmouseout="UnTip()" type = "button" id = "nbutton" value = "No thanks" onclick = "buttonwhich('No')">
-
+<input type="hidden" id="killInvites" name="killInvites" value="" />
 <script type = "text/javascript">
 function hideInvite() {
   document.getElementById("tnc").style.display = 'none';
@@ -169,13 +169,20 @@ function hideInvite() {
 function buttonwhich(message) {
   document.getElementById("ybutton").style.display = 'none';
   document.getElementById("nbutton").disabled = 'true';
-  document.getElementById("nbutton").value = 'Thank you for using $plgLongName Lite!';
-  setTimeout('hideInvite()', 2000);
+  document.getElementById("killInvites").value = 'true' ;
+  document.getElementById("nbutton").value = 'Thank you for using $plgLongName Lite! Please save options to hide this box forever.';
+  setTimeout('hideInvite()', 3000);
   if (message == 'Yes') window.open('http://buy.thulasidas.com/$plgName') ;
 }
 </script>
 </div>
 ENDINVITE;
 }
+ if (!function_exists('renderRating')) {
+   function renderRating() {
+     $plg = basename(dirname(__FILE__)) ;
+     echo "<div class='updated'><strong><p>Thanks for using this plugin! If it works and your are satisfied, why not <a href='http://wordpress.org/extend/plugins/$plg/'>rate it</a> and <a href='http://wordpress.org/extend/plugins/$plg/'>recommend it</a> to others? :-) </p></strong></div>" ;
+   }
+ }
 }
 ?>
