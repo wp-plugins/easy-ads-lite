@@ -31,7 +31,7 @@ if (!class_exists("ezNS")) {
       $pluginName = str_replace(' ', '-', $name) ; // Easy-Plugin
       $genOptionName = 'ezAPI-' . $pluginName . '-' . $themeName ; //ezAPI-Easy-Plugin
       $nameSpaceSuffix = '_' . str_replace(' ', '_', $name) ; // _Easy_Plugin
-      $pluginKey = $baseName . '/' . $baseName . '.php' ; // easy-plugin/easy-plugin.php
+      $pluginKey = $baseName . '/easy-ads.php' ; // easy-plugin/easy-plugin.php
       self::$themeName = $themeName ;
       self::$CWD = $CWD ;
       self::$baseName = $baseName ;

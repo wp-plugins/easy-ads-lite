@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://affiliates.thulasidas.com
 Tags: chitika, clicksor, bidvertiser, adsense, google, ad, ads, advertising, income
 Requires at least: 2.8
-Tested up to: 3.3
-Stable tag: 2.05
+Tested up to: 3.4
+Stable tag: 2.06
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -18,12 +18,12 @@ Note that this plugin requires PHPv5.0+. If it does not work on your web host, p
 
 = Features =
 
-1. Tabbed and intuitive interface for multiple ad providers.
+1. Tabbed and intuitive interface for multiple ad providers (AdSense, Chitika etc.).
 2. Rich display and alignment options.
 3. Robust codebase for extending to more ad providers.
 4. Control over the positioning and display of ad blocks in each post or page.
-5. Simple configuration interface -- nothing more than entering your provider id, and with sensible defaults for the few options present, all with clear instructions.
-6. Widgets for each provider.
+5. Simple configuration interface -- nothing more than entering your provider id for AdSense or Chitika, and with sensible defaults for the few options present, all with clear instructions.
+6. Specialized widgets for AdSense and Chitika, and common widget interface for the rest.
 
 If you want to use only AdSense, you would want to consider my full-fledged, feature-rich plugin [Easy AdSense](http://www.thulasidas.com/plugins/easy-adsense "The complete solution for all things AdSense related").
 
@@ -32,7 +32,7 @@ If you want to use only AdSense, you would want to consider my full-fledged, fea
 *Easy Ads* is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-ads "Pro version of the Easy Ads plugin for $8.95") gives you even more features.
 
 1. In the Pro version you have an *Admin* (Control Panel) tab with:
- - Option to selectively activate or deactivate various ad providers (in the *Admin* Tab).
+ - Option to selectively activate or deactivate various ad providers in the *Admin* Tab, so that you can have only AdSense, or only Chitika, if you so choose.
  - More information about ad positions and slots (as an image in the *Admin* Tab).
  - Option to set number of ad slots per position.
  - New commands (in the *Admin* Tab) to *Reset All Options*, *Drop All Options* or *Migrate Options* to a new plugin version.
@@ -52,16 +52,17 @@ I would like to hear from you if you have any feature requests or comments.
 1. Expertise Level: I plan to introduce expertise levels (Easy, Advanced and Expert tabs) within the tab for each ad provider.
 1. Max Number of Ad blocks: Since some providers require you to limit the number of ad blocks to some policy-driven ceiling, I will expose that option to you. Also to be customized is the number of ads per slot. In this initial release, there are three slots (top, middle and bottom), each of which can take two ad blocks. In a future release, you will have much more customization options.
 1. Internationalization: Future versions will provide MO/PO files for internationalization.
+1. Documentation: As this plugin may have an overwhelming set of options and features, I will try to write a comprehensive help system for it.
 
 = New in this Release =
 
-Bug fixes.
+Testing compatibility with WP 3.4
 
 == Upgrade Notice ==
 
-= 2.05 =
+= 2.06 =
 
-Bug fixes.
+Testing compatibility with WP 3.4
 
 == Screenshots ==
 
@@ -108,6 +109,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.06: Testing compatibility with WP 3.4. [July 11, 2012]
 * V2.05: Bug fixes. [May 25, 2012]
 * V2.04: Bug fixes. [May 18. 2012]
 * V2.03: Renaming the plugin to drop the word Lite. [May 11, 2012]
