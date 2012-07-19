@@ -1,10 +1,10 @@
 === Easy Ads ===
 Contributors: manojtd
 Donate link: http://affiliates.thulasidas.com
-Tags: chitika, clicksor, bidvertiser, adsense, google, ad, ads, advertising, income
+Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising
 Requires at least: 2.8
 Tested up to: 3.4
-Stable tag: 2.06
+Stable tag: 2.07
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -56,13 +56,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Testing compatibility with WP 3.4
+Minor changes to the admin page.
 
 == Upgrade Notice ==
 
-= 2.06 =
+= 2.07 =
 
-Testing compatibility with WP 3.4
+Minor changes to the admin page.
 
 == Screenshots ==
 
@@ -109,6 +109,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.07: Minor changes to the admin page. [July 18, 2012]
 * V2.06: Testing compatibility with WP 3.4. [July 11, 2012]
 * V2.05: Bug fixes. [May 25, 2012]
 * V2.04: Bug fixes. [May 18. 2012]
