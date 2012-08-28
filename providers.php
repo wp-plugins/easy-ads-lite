@@ -504,7 +504,7 @@ if (!class_exists("providerWidget")) {
       else
         $inline = 'style="' . $this->style . '"' ;
       if (!empty($adText))
-          echo '<div class="easy-ads easy-ads-' . strtolower(self::$provider->name)  . '" ' .
+          echo '<div class="easy-ads easy-ads-widget" ' .
             $inline . '>' . $adText . "</div>\n" ;
     }
     function widget($args, $instance) {
