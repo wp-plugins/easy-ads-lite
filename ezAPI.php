@@ -22,7 +22,7 @@ if (!class_exists("ezNS")) {
     static $defaults, $locale, $genOptionName, $genOptions, $nameSpaceSuffix ;
     static $isFiltered, $isPure, $gCount, $b64 ;
     static function setNS($FILE, $PLUGINDIR) {
-      $themeName = get_settings('stylesheet') ;
+      $themeName = get_option('stylesheet') ;
       $CWD = dirname($FILE) ; // /pwd/easy-plugin
       $baseName = basename($CWD) ; // easy-plugin
       $URL = get_option('siteurl') . '/' . $PLUGINDIR . '/' . $baseName ; // http://blog/wp-content/easy-plugin
@@ -372,10 +372,10 @@ if (!class_exists("ezTab")) {
 
     function ezTab($name, $defaults) {
       $this->name = $name ;
-      $themeName = $this->plugin->themeName ;
-      $CWD = $this->plugin->CWD ;
-      $baseName = $this->plugin->baseName ;
-      $pluginName = $this->plugin->pluginName ;
+      if (is_object($this->plugin)) $themeName = $this->plugin->themeName ;
+      if (is_object($this->plugin)) $CWD = $this->plugin->CWD ;
+      if (is_object($this->plugin)) $baseName = $this->plugin->baseName ;
+      if (is_object($this->plugin)) $pluginName = $this->plugin->pluginName ;
       $this->optionName = ezNS::$genOptionName . '-' . $this->name ;
       $this->options = get_option($this->optionName) ;
       if (empty($this->options)) {
@@ -530,7 +530,9 @@ if (!class_exists("ezTab")) {
     }
     function &addOption($type, $key) {
       $name = $this->name . '_' . $key ;
-      if (is_array($this->options) && array_key_exists($key, $this->options)) {
+      if (!empty($this->options) &&
+        is_array($this->options) &&
+        array_key_exists($key, $this->options)) {
         die ("Fatal Error [addOption]: New Option $key already exists in " . $this->name) ;
       }
       if (class_exists($type)) // Specialized class for this type of input
@@ -541,9 +543,10 @@ if (!class_exists("ezTab")) {
     }
     function &addSubmitButton($type, $key) {
       $name = $this->name . '_' . $key ;
-      if (is_array($this->submitButtons) && array_key_exists($name, $this->submitButtons)) {
+      if (!empty($this->submitButtons) &&
+        is_array($this->submitButtons) &&
+        array_key_exists($name, $this->submitButtons)) {
         die ("Fatal Error [addSubmitButton]: New Button $name already exists in " . $this->submitButtons) ;
-        // echo ("Fatal Error [addSubmitButton]: New Button $name already exists in " . $this->submitButtons) ;
       }
       if (class_exists($type)) // Specialized class for this type of input
         $this->submitButtons[$key] =& new $type($name) ;
@@ -575,6 +578,7 @@ if (!class_exists("ezTab")) {
         $titleText = "TITLE, '$title',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true,";
       if (!empty($width))
         $widthText = "WIDTH, $width," ;
+      $style = '' ;
       if ($underline) $style="style='text-decoration:underline'" ;
       $return = "<span  $style" .
         "onmouseover=\"Tip('". htmlspecialchars($tip) . "', " .
@@ -764,7 +768,7 @@ if (!class_exists("ezAbout")) {
     function defineOptions() {
       unset($this->options) ;
       unset($this->blurbs) ;
-      $pluginName = "Easy Ads Lite" ;
+      $pluginName = "Easy Ads" ;
 
       $fname = dirname (__FILE__) . '/myPlugins.php' ;
       include($fname) ;
@@ -831,7 +835,7 @@ if (!class_exists("ezAbout")) {
 
       if (!empty($this->blurbs)) {
         foreach ($this->blurbs as $k => $b) {
-          if ($k != '$pluginKey' && !empty($b)) $b->render() ;
+          if ($k != $pluginKey && !empty($b)) $b->render() ;
         }
       }
       echo "</ul>\n</td>\n</tr>\n</table>\n" ;
@@ -947,7 +951,7 @@ if (!class_exists("ezPlugin")) {
       }
     }
     function handleOptionMigration() {
-      $action = $_POST['genOptionMigration'] ;
+      if (!empty($_POST['genOptionMigration'])) $action = $_POST['genOptionMigration'] ;
       if (isset($action)) {
         $pluginVersion = $this->getVersion() ;
         $submitMessage .= '<div class="updated"><p><strong>' .$name .
@@ -978,7 +982,7 @@ if (!class_exists("ezPlugin")) {
 
       $this->genOptions = get_option(ezNS::$genOptionName) ;
       ezNS::$genOptions = $this->genOptions ; // in case handleSubmits changed options
-
+      $pluginVersion = $this->getVersion() ;
       $this->submitMessage .= $this->handleOptionMigration($pluginVersion) ;
       echo $this->submitMessage ;
       echo $this->errorMessage ;

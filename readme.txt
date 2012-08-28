@@ -4,7 +4,7 @@ Donate link: http://affiliates.thulasidas.com
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
 Tested up to: 3.4
-Stable tag: 2.08
+Stable tag: 2.09
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -56,13 +56,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Adding more add sizes.
+Taking care of some debug notices from WordPress debug mode.
 
 == Upgrade Notice ==
 
-= 2.08 =
+= 2.09 =
 
-Adding more add sizes.
+Taking care of some debug notices from WordPress debug mode.
 
 == Screenshots ==
 
@@ -76,6 +76,18 @@ Adding more add sizes.
 3. Go to the Settings -> *Easy Ads* and enter your ad codes and options.
 
 == Frequently Asked Questions ==
+
+= What are the different versions of the plugin? =
+
+Easy Ads is the freely distributed version of a premium plugin. The [Pro version](https://buy.thulasidas.com/easy-ads "Pro version of the Easy Ads plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $8.95, and is appropriate if you expect to make more than $150 of ad revenue from your site.
+
+Note that support is *not* included. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") (for both the Lite and Pro versions) will be charged at $0.95. The same charges will apply for follow-up questions as well. In other words, support pricing is on a per-question basis, not a per-issue basis.
+
+= I still don't get it. Porn and site block - that you already have during Asdense ad setup? =
+
+What you have in AdSense is an ability to block ads from certain sites. For instance, if you don't like ads *from* my site "thulasidas.com", you can block them. What the pro version gives you is the ability to block ads *to* certain clients. That is, if you don't want visitors from certain IP addresses see your ads (because they may click on too many of them, getting your AdSense account banned, for instance), you can with my plugin.
+
+Porn block also is similar -- Google lets you choose non-porn ads (I think). What my plugin does is to look at the content of your page, and block ads if it looks like a porn page. (This can happen if a spammer posts a porn kind of comment on your blog, which again may get your AdSense account banned.)
 
 = I enabled the widgets for various ad providers. But I don't see any on my blog pages. Howcome? =
 
@@ -109,6 +121,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.09: Taking care of some debug notices from WordPress debug mode. [Aug 27, 2012]
 * V2.08: Adding more add sizes. [Aug 12, 2012]
 * V2.07: Minor changes to the admin page. [July 18, 2012]
 * V2.06: Testing compatibility with WP 3.4. [July 11, 2012]
