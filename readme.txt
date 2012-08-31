@@ -4,7 +4,7 @@ Donate link: http://affiliates.thulasidas.com
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
 Tested up to: 3.4
-Stable tag: 2.09
+Stable tag: 2.10
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -56,13 +56,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Taking care of some debug notices from WordPress debug mode.
+More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode.
 
 == Upgrade Notice ==
 
-= 2.09 =
+= 2.10 =
 
-Taking care of some debug notices from WordPress debug mode.
+More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode.
 
 == Screenshots ==
 
@@ -121,6 +121,7 @@ Please report any problems, and share your thoughts and comments [at the plugin 
 
 == Change Log ==
 
+* V2.10: More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode. [Aug 31, 2012]
 * V2.09: Taking care of some debug notices from WordPress debug mode. [Aug 27, 2012]
 * V2.08: Adding more add sizes. [Aug 12, 2012]
 * V2.07: Minor changes to the admin page. [July 18, 2012]

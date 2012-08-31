@@ -509,7 +509,9 @@ if (!class_exists("providerWidget")) {
     }
     function widget($args, $instance) {
       extract( $args );
-      $title = apply_filters('widget_title', $instance['title']);
+      $title = '' ;
+      if (!empty($instance['title']))
+        $title = apply_filters('widget_title', $instance['title']);
       echo $before_widget;
       if ( $title )
         echo $before_title . $title . $after_title;
@@ -523,11 +525,14 @@ if (!class_exists("providerWidget")) {
     }
     function update($new_instance, $old_instance) {
       $instance = $old_instance;
-      $instance['title'] = strip_tags($new_instance['title']);
+      $instance['title'] = '' ;
+      if (!empty($new_instance['title']))
+        $instance['title'] = strip_tags($new_instance['title']);
       return $instance;
     }
     function form($instance) {
-      $title = esc_attr($instance['title']);
+      $title = '' ;
+      if (!empty($instance['title'])) $title = esc_attr($instance['title']);
       echo '<p><label for="', $this->get_field_id('title'),
         '">Title:  <input class="widefat" id="', $this->get_field_id('title'),
         '" name="', $this->get_field_name('title'), '" type="text" value="',

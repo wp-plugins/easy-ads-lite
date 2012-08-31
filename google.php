@@ -57,8 +57,8 @@ if (!class_exists('AdSense')) {
     function mkAdText($size='', $suffix=''){
       $userid = $this->get('userid' . $suffix) ;
       if ($userid == "Your AdSense ID") {
-          $adText = ezExtras::handleDefaultText('') ;
-          return $adText ;
+        $adText = ezExtras::handleDefaultText('', $size) ;
+        return $adText ;
       }
       if ($size == '') $size = $this->get('format' . $suffix) ;
       $x = strpos($size, 'x' . $suffix) ;

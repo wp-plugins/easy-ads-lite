@@ -27,8 +27,12 @@ if (!class_exists('ClicksorWidget')) {
       echo $before_widget;
       if ( $title )
         echo $before_title . $title . $after_title;
-      $adText = ezExtras::handleDefaultText($adText,'160x600') ;
-      echo $this->decorate($adText) ;
+      $adText = stripslashes(self::$provider->get('widget-text')) ;
+      if (empty($adText)) echo "Empty Widget Text from <code>" . $this->name . "</code>" ;
+      else {
+        $adText = ezExtras::handleDefaultText($adText,'160x600') ;
+        echo $this->decorate($adText) ;
+      }
       echo $after_widget;
     }
     public static function setProvider(&$p) {
