@@ -1,10 +1,10 @@
 === Easy Ads ===
 Contributors: manojtd
-Donate link: http://affiliates.thulasidas.com
+Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
 Tested up to: 3.4
-Stable tag: 2.10
+Stable tag: 2.20
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -56,13 +56,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode.
+Admin interface modifications.
 
 == Upgrade Notice ==
 
-= 2.10 =
+= 2.20 =
 
-More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode.
+Admin interface modifications.
 
 == Screenshots ==
 
@@ -81,7 +81,9 @@ More minor bug fixes in widget handling and to take care of some debug notices f
 
 Easy Ads is the freely distributed version of a premium plugin. The [Pro version](https://buy.thulasidas.com/easy-ads "Pro version of the Easy Ads plugin") gives you more benefits -- lets you activate a filter to ensure that your ads show only on those pages that seem to comply with Google AdSense policies. It also lets you specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned. The Pro version costs $8.95, and is appropriate if you expect to make more than $150 of ad revenue from your site.
 
-Note that support is *not* included. Each [support question](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HYZ5AWPYSC8VA "Ask a support question via PayPal") (for both the Lite and Pro versions) will be charged at $0.95. The same charges will apply for follow-up questions as well. In other words, support pricing is on a per-question basis, not a per-issue basis.
+= How can I contact the plugin author if I need help? =
+
+This plugin uses a paid support model in order to manage the support load. Each [support ticket](http://support.thulasidas.com "Ask a support question") will be charged at $0.95 for the Lite version (and for the Pro version after a short free support period). The support ticket is valid for 48 hours, and further follow-up questions will call for a new support ticket.
 
 = I still don't get it. Porn and site block - that you already have during Asdense ad setup? =
 
@@ -115,15 +117,12 @@ But this unfortunately means that you do have to set the code *once* whenever yo
 
 Yes! In *Easy Ads*, you have more options [through **custom fields**] to control ad blocks in individual posts/pages. Add custom fields with keys like **easy-ads-adsense-top, easy-ads-adsense-middle, easy-ads-adsense-bottom** and with values like **left, right, center** or **no** to have control how the ad blocks show up in each post or page. The value "**no**" suppresses all the ad blocks in the post or page for that provider.
 
-= How do I report a bug or ask a question? =
-
-Please report any problems, and share your thoughts and comments [at the plugin forum at WordPress](http://wordpress.org/tags/easy-ads-lite "Post comments/suggestions/bugs on the WordPress.org forum. [Requires login/registration]") Or send an [email to the plugin author](http://manoj.thulasidas.com/mail.shtml "Email the author") for paid support.
-
 == Change Log ==
 
+* V2.20: Admin interface modifications. [Sep 27, 2012]
 * V2.10: More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode. [Aug 31, 2012]
 * V2.09: Taking care of some debug notices from WordPress debug mode. [Aug 27, 2012]
-* V2.08: Adding more add sizes. [Aug 12, 2012]
+* V2.08: Adding more ad sizes. [Aug 12, 2012]
 * V2.07: Minor changes to the admin page. [July 18, 2012]
 * V2.06: Testing compatibility with WP 3.4. [July 11, 2012]
 * V2.05: Bug fixes. [May 25, 2012]

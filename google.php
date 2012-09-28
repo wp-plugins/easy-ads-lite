@@ -72,21 +72,6 @@ if (!class_exists('AdSense')) {
       $bgColor = $this->get('bgcolor' . $suffix) ;
       $borderColor = $this->get('bordercolor' . $suffix) ;
       $corners = $this->get('corners' . $suffix) ;
-      switch ($fallBack){
-      case "collapse" :
-        $adsenseFallBack = "" ;
-        break ;
-      case "alt" :
-        if (!empty($fallBackURL)) $adsenseFallBack = 'ch_alternate_ad_url = "' . $fallBackURL . '";' ;
-        break ;
-      case "altaut" :
-        $fallBackURL = "http://www.thulasidas.com/ads/ads1.php?size=$size" ;
-        $adsenseFallBack = 'ch_alternate_ad_url = "' . $fallBackURL . '";' ;
-        break ;
-      case "backfill" :
-        $adsenseFallBack = "ch_backfill = 1;" ;
-        break ;
-      }
 
       $adText = "<script type=\"text/javascript\"><!--\n" .
         "google_ad_client = \"pub-$userid\";\n" .

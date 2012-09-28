@@ -2,7 +2,7 @@
 /*
   Plugin Name: Easy Ads
   Plugin URI: http://www.thulasidas.com/adsense
-  Version: 2.10
+  Version: 2.20
   Description: <em>Lite Version</em>: Make more money from your blog using multiple ad providers (<a href="http://signup.clicksor.com/pub/index.php?ref=105268" target="_blank">Clicksor</a>, <a href="http://chitika.com/">Chitika</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404" target="_blank">BidVertiser</a> in addition to <a href="http://adsense.google.com" target="_blank">AdSense</a>). Configure it at <a href="options-general.php?page=easy-ads-lite.php">Settings &rarr; Easy Ads</a>.
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
@@ -42,6 +42,9 @@ if (file_exists(dirname(__FILE__) . '/validate.php')) {
   include($fname) ;
   $fname = dirname (__FILE__) . '/google.php' ;
   include($fname) ;
+}
+if (class_exists("GoogleAdsense")) {
+  die (__("<strong><em>Google AdSense</em></strong> (Lite or Pro) plugin seems to be active.<br />Please deactivate it before activating <strong><em>Easy Ads</em></strong>.", "easy-adsenser"));
 }
 class easyAds extends ezPlugin {
   var $adArrays = array() ;
@@ -101,7 +104,6 @@ class easyAds extends ezPlugin {
   }
 
   function filterContent($content) {
-    // ezExtras::gFilter($content) ;
     foreach ($this->tabs as $p) {
       $p->setPlugin(&$this) ;
       if ($p->isActive) {
@@ -117,12 +119,12 @@ class easyAds extends ezPlugin {
     }
     $adsPerSlot = 1 ;
     foreach ($this->positions as $pos) { // pick random ads to fill the ad slots ($pos)
+      $$pos = '' ;
       $adStack =& $this->adArrays[$pos] ;
       if (empty($adStack)) continue ;
       $adKeys = array_keys($adStack);
       if (count($adStack) > $adsPerSlot) $adKeys = array_rand($adStack, $adsPerSlot);
       if (!is_array($adKeys)) $adKeys = array($adKeys) ;
-      $$pos = '' ;
       foreach ($adKeys as $k) {
         $ad = ezExtras::handleDefaultText($adStack[$k]) ;
         $ad = ezExtras::enforceGCount($ad) ;

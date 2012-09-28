@@ -206,14 +206,14 @@ if (!class_exists("ezOption")) {
       if (!empty($this->before)) echo $this->before, "\n" ;
       $name = $this->name ;
       $value = '<em><strong>'.$this->value.'</strong></em>' ;
-      if (empty($this->url)) $this->url = 'http://buy.ads-ez.com/' . $name ;
+      if (empty($this->url)) $this->url = 'http://buy.thulasidas.com/' . $name ;
       $link = '<b><a href="' . $this->url . '" target="_blank">' . $value . '</a> </b>' ;
       $text = $link . $this->desc ;
       $price = $this->price ;
       $moreInfo =  "&nbsp; <a href='http://www.thulasidas.com/plugins/$name' title='More info about $value'>More Info</a>" ;
 
-      $liteVersion = " <a href='http://buy.ads-ez.com/$name/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
-      $proVersion = " <a href='http://buy.ads-ez.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
+      $liteVersion = " <a href='http://buy.thulasidas.com/lite/$name.zip' title='Download the Lite version of $value'>Get Lite Version</a> " ;
+      $proVersion = " <a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of $value for \$$price'>Get Pro Version</a><br />" ;
       $plugindir = get_option('siteurl') . '/' . PLUGINDIR . '/' .  basename(dirname(__FILE__)) ;
       $why = addslashes("<a href='http://buy.thulasidas.com/$name' title='Buy the Pro version of the $name plugin'><img src='$plugindir/ezpaypal.png' border='0' alt='ezPayPal -- Instant PayPal Shop.' class='alignright' /></a><br />").
         $this->why ;
@@ -404,7 +404,7 @@ if (!class_exists("ezTab")) {
       $this->checkDependencyInjection(__FUNCTION__) ;
     }
     function migrateOptions() {
-      $savedOptions = $this->options ;
+      if (isset($this->options)) $savedOptions = $this->options ;
       unset($this->options) ;
       $this->defineOptions() ;
       if (!empty($savedOptions) && !empty($this->options))
@@ -761,6 +761,9 @@ if (!class_exists("ezAbout")) {
       include($fname) ;
       echo '</div>' ;
 
+      $fname = dirname (__FILE__) . '/tail-text.php' ;
+      include($fname) ;
+
       $this->renderContent() ;
 
       echo "</div><!-- End: $name --> \n" ;
@@ -772,16 +775,6 @@ if (!class_exists("ezAbout")) {
 
       $fname = dirname (__FILE__) . '/myPlugins.php' ;
       include($fname) ;
-
-      foreach ($myPlugins as $k => $plg) {
-        $option = &$this->addOption('blurb', $k) ;
-        $properties = array('value' => $plg['value'],
-                      'desc' => $plg['desc'],
-                      'title' => $plg['title'],
-                      'price'=> $plg['price'],
-                      'why' => $plg['pro']) ;
-        $option->set($properties) ;
-      }
 
       // Credits - set the price to negative so that it renders without "buy" links.
       // ugly, I know...
@@ -819,18 +812,7 @@ if (!class_exists("ezAbout")) {
     }
     function renderContent() {
       $pluginKey = 'easy-ads' ;
-      echo '<table class="form-table" >', "\n",  '<tr><th scope="row"><b>' ,
-        $this->plugin->name, "</b></th></tr>\n<tr><td>\n",
-        '<ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >', "\n" ;
-      if (!empty($this->blurbs[$pluginKey]))
-        $this->blurbs[$pluginKey]->render() ;
-
-      echo "<li>Please report any problems. And share your thoughts and comments.&nbsp;",
-        '<a href="http://wordpress.org/tags/' . $pluginKey .
-        '" title="Post it in the WordPress forum" target="_blank">[WordPress Forum]</a>',
-        '</li>' ;
-
-      echo "</ul>\n</td>\n</tr>\n<tr><th scope='row'><b>Other Plugins and Apps</b></th></tr>\n<tr><td>" ,
+      echo '<table class="form-table" >', "\n<tr><td>" ,
         '<ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >' ;
 
       if (!empty($this->blurbs)) {
@@ -954,7 +936,7 @@ if (!class_exists("ezPlugin")) {
       if (!empty($_POST['genOptionMigration'])) $action = $_POST['genOptionMigration'] ;
       if (isset($action)) {
         $pluginVersion = $this->getVersion() ;
-        $submitMessage .= '<div class="updated"><p><strong>' .$name .
+        $submitMessage = '<div class="updated"><p><strong>' . $this->name .
           " Options migrated to $pluginVersion.</strong></p> </div>" ;
         if ($action = "Migrate") $this->migrateOptions() ;
         if ($action = "Reset") $this->resetOptions() ;

@@ -30,6 +30,6 @@ if ($phpVersion < 5.0) {
                 "target='_blank'><em>AdSense Now!</em></a> plugin.<br/>" ;
 }
 if (!empty($ezErrorMsg)) {
-   exit($ezErrorMsg) ;
+  exit($ezErrorMsg) ;
 }
 ?>
