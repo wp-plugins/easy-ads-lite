@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
 Tested up to: 3.4
-Stable tag: 2.20
+Stable tag: 2.30
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -56,13 +56,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Admin interface modifications.
+Enforcing the Google policy on the number of ads, and making the pub-id entry flexible.
 
 == Upgrade Notice ==
 
-= 2.20 =
+= 2.30 =
 
-Admin interface modifications.
+Enforcing the Google policy on the number of ads, and making the pub-id entry flexible.
 
 == Screenshots ==
 
@@ -91,7 +91,7 @@ What you have in AdSense is an ability to block ads from certain sites. For inst
 
 Porn block also is similar -- Google lets you choose non-porn ads (I think). What my plugin does is to look at the content of your page, and block ads if it looks like a porn page. (This can happen if a spammer posts a porn kind of comment on your blog, which again may get your AdSense account banned.)
 
-= I enabled the widgets for various ad providers. But I don't see any on my blog pages. Howcome? =
+= I enabled the widgets for various ad providers. But I don't see any on my blog pages. How come? =
 
 The widgets are enabled and available on your Appearance -> Widgets area. Please drag and drop them to the appropriate side-bar.
 
@@ -119,6 +119,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V2.30: Enforcing the Google policy on the number of ads, and making the pub-id entry flexible. [Nov 4, 2012]
 * V2.20: Admin interface modifications. [Sep 27, 2012]
 * V2.10: More minor bug fixes in widget handling and to take care of some debug notices from WordPress debug mode. [Aug 31, 2012]
 * V2.09: Taking care of some debug notices from WordPress debug mode. [Aug 27, 2012]

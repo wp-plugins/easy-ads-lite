@@ -60,6 +60,9 @@ if (!class_exists('AdSense')) {
         $adText = ezExtras::handleDefaultText('', $size) ;
         return $adText ;
       }
+      if (strpos($userid, "pub") === false) {
+        $userid = "pub-" . $userid ;
+      }
       if ($size == '') $size = $this->get('format' . $suffix) ;
       $x = strpos($size, 'x' . $suffix) ;
       $w = substr($size, 0, $x);
