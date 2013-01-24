@@ -2,7 +2,7 @@
 /*
   Plugin Name: Easy Ads
   Plugin URI: http://www.thulasidas.com/adsense
-  Version: 2.31
+  Version: 2.32
   Description: <em>Lite Version</em>: Make more money from your blog using multiple ad providers (<a href="http://signup.clicksor.com/pub/index.php?ref=105268" target="_blank">Clicksor</a>, <a href="http://chitika.com/">Chitika</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404" target="_blank">BidVertiser</a> in addition to <a href="http://adsense.google.com" target="_blank">AdSense</a>). Configure it at <a href="options-general.php?page=easy-ads-lite.php">Settings &rarr; Easy Ads</a>.
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
@@ -94,7 +94,7 @@ class easyAds extends ezPlugin {
         $this->tabs[$k] = & new $ezClassName($k, $v);
       else
         $this->tabs[$k] = & new provider($k, $v);
-      $this->tabs[$k]->setPlugin(&$this);
+      $this->tabs[$k]->setPlugin($this);
       if (!empty($this->tabs[$k]->options['active']))
         $this->tabs[$k]->isActive = $this->tabs[$k]->options['active']->value;
     }
@@ -105,7 +105,7 @@ class easyAds extends ezPlugin {
 
   function filterContent($content) {
     foreach ($this->tabs as $p) {
-      $p->setPlugin(&$this) ;
+      $p->setPlugin($this) ;
       if ($p->isActive) {
         $p->buildAdBlocks() ;
         $p->applyAdminOptions() ;
@@ -136,8 +136,8 @@ class easyAds extends ezPlugin {
 
   function addAdminPage() {
     $plugin_page = add_options_page(ezNS::$name, ezNS::$name,
-                   'manage_options', basename(ezNS::$CWD), array(&$this, 'renderAdminPage'));
-    add_action('admin_head-'. $plugin_page, array(&$this, 'writeAdminHeader'));
+                   'manage_options', basename(ezNS::$CWD), array($this, 'renderAdminPage'));
+    add_action('admin_head-'. $plugin_page, array($this, 'writeAdminHeader'));
   }
 
   function addWidgets() {
@@ -153,8 +153,8 @@ if (class_exists("easyAds")) {
   $mAd = new easyAds() ;
   if (isset($mAd)) {
     ezNS::setStaticVars($mAd->defaults) ;
-    add_action('admin_menu', array(&$mAd, 'addAdminPage')) ;
-    add_filter('the_content', array(&$mAd, 'filterContent')) ;
+    add_action('admin_menu', array($mAd, 'addAdminPage')) ;
+    add_filter('the_content', array($mAd, 'filterContent')) ;
     $mAd->addWidgets() ;
   }
 }
