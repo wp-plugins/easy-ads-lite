@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
 Tested up to: 3.5
-Stable tag: 2.32
+Stable tag: 2.40
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -56,13 +56,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Bug fixes (Fatal error: Call-time pass-by-reference has been removed).
+Adding an admin page translator.
 
 == Upgrade Notice ==
 
-= 2.32 =
+= 2.40 =
 
-Bug fixes (Fatal error: Call-time pass-by-reference has been removed).
+Adding an admin page translator.
 
 == Screenshots ==
 
@@ -119,6 +119,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V2.40: Adding an admin page translator. [May 17, 2013]
 * V2.32: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 24, 2013]
 * V2.31: Bug fix. [Dec 22, 2012]
 * V2.30: Enforcing the Google policy on the number of ads, and making the pub-id entry flexible. [Nov 4, 2012]
