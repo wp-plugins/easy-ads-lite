@@ -108,7 +108,7 @@ if (!class_exists('Chitika')) {
       if ($this->isActive) {
         foreach ($this->plugin->positions as $key) {
           $name = $this->name . '-' . $key ;
-          $this->adBlocks[$key] =& new adBlock($name) ;
+          $this->adBlocks[$key] = new adBlock($name) ;
           $adText = $this->mkAdText() ;
           $this->adBlocks[$key]->set($adText) ;
         }

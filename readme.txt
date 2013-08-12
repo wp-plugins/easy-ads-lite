@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
-Tested up to: 3.5
-Stable tag: 2.40
+Tested up to: 3.6
+Stable tag: 2.50
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -24,6 +24,7 @@ Note that this plugin requires PHPv5.0+. If it does not work on your web host, p
 4. Control over the positioning and display of ad blocks in each post or page.
 5. Simple configuration interface -- nothing more than entering your provider id for AdSense or Chitika, and with sensible defaults for the few options present, all with clear instructions.
 6. Specialized widgets for AdSense and Chitika, and common widget interface for the rest.
+7. Available in your own language using machine translation curtsey of Google and Microsoft.
 
 If you want to use only AdSense, you would want to consider my full-fledged, feature-rich plugin [Easy AdSense](http://www.thulasidas.com/plugins/easy-adsense "The complete solution for all things AdSense related").
 
@@ -56,13 +57,13 @@ I would like to hear from you if you have any feature requests or comments.
 
 = New in this Release =
 
-Adding an admin page translator.
+Compatibility with WP3.6.
 
 == Upgrade Notice ==
 
-= 2.40 =
+= 2.50 =
 
-Adding an admin page translator.
+Compatibility with WP3.6.
 
 == Screenshots ==
 
@@ -119,6 +120,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V2.50: Compatibility with WP3.6. [Aug 12, 2013]
 * V2.40: Adding an admin page translator. [May 17, 2013]
 * V2.32: Bug fixes (Fatal error: Call-time pass-by-reference has been removed). [Jan 24, 2013]
 * V2.31: Bug fix. [Dec 22, 2012]

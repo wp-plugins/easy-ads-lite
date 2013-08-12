@@ -2,7 +2,7 @@
 /*
   Plugin Name: Easy Ads
   Plugin URI: http://www.thulasidas.com/adsense
-  Version: 2.40
+  Version: 2.50
   Description: <em>Lite Version</em>: Make more money from your blog using multiple ad providers (<a href="http://signup.clicksor.com/pub/index.php?ref=105268" target="_blank">Clicksor</a>, <a href="http://chitika.com/">Chitika</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404" target="_blank">BidVertiser</a> in addition to <a href="http://adsense.google.com" target="_blank">AdSense</a>). Configure it at <a href="options-general.php?page=easy-ads-lite.php">Settings &rarr; Easy Ads</a>.
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
@@ -89,11 +89,11 @@ class easyAds extends ezPlugin {
       $className = ezNS::ns($k);
       $ezClassName = 'ez' . $k;
       if (class_exists($className))
-        $this->tabs[$k] = & new $className($k, $v);
+        $this->tabs[$k] = new $className($k, $v);
       else if (class_exists($ezClassName))
-        $this->tabs[$k] = & new $ezClassName($k, $v);
+        $this->tabs[$k] = new $ezClassName($k, $v);
       else
-        $this->tabs[$k] = & new provider($k, $v);
+        $this->tabs[$k] = new provider($k, $v);
       $this->tabs[$k]->setPlugin($this);
       if (!empty($this->tabs[$k]->options['active']))
         $this->tabs[$k]->isActive = $this->tabs[$k]->options['active']->value;
