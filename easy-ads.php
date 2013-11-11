@@ -2,7 +2,7 @@
 /*
   Plugin Name: Easy Ads
   Plugin URI: http://www.thulasidas.com/adsense
-  Version: 2.50
+  Version: 2.60
   Description: <em>Lite Version</em>: Make more money from your blog using multiple ad providers (<a href="http://signup.clicksor.com/pub/index.php?ref=105268" target="_blank">Clicksor</a>, <a href="http://chitika.com/">Chitika</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404" target="_blank">BidVertiser</a> in addition to <a href="http://adsense.google.com" target="_blank">AdSense</a>). Configure it at <a href="options-general.php?page=easy-ads-lite.php">Settings &rarr; Easy Ads</a>.
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com

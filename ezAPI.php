@@ -759,6 +759,7 @@ if (!class_exists("ezAbout")) {
       $plgName = 'easy-ads' ;
       $fname = dirname (__FILE__) . '/support.php' ;
       include_once($fname) ;
+      renderSupport($plgName, $myPlugins[$plgName]);
       echo '</div>' ;
 
       $fname = dirname (__FILE__) . '/tail-text.php' ;
