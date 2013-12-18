@@ -661,14 +661,11 @@ if (!class_exists('Overview')) {
       }
       echo "</table></td>\n" ;
 
-      echo "</tr><tr><td colspan='2'>";
+      echo "</tr></table>\n";
       echo '<div style="background-color:#fcf;padding:5px;border: solid 1px">' ;
       $fname = dirname (__FILE__) . '/support.php' ;
       include_once($fname) ;
       echo '</div>' ;
-      echo "</td";
-
-      echo "</tr></table>\n" ;
     }
   } // End: Class Overview
 }
@@ -781,4 +778,3 @@ if (!class_exists('Admin')) {
 if (!class_exists('About')) {
   class About extends ezAbout {}
 }
-?>
