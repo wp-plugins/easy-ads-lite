@@ -1,4 +1,5 @@
 <?php
+
 /*
   Copyright (C) 2010 www.thulasidas.com
 
@@ -14,33 +15,47 @@
 
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 if (!class_exists('ClicksorWidget')) {
+
   class ClicksorWidget extends providerWidget {
-    public static $provider ;
+
+    public static $provider;
+
     function ClicksorWidget($name = 'ClicksorWidget') {
       parent::providerWidget($name, self::$provider);
     }
+
     function widget($args, $instance) {
-      extract( $args );
+      extract($args);
       $title = apply_filters('widget_title', $instance['title']);
       echo $before_widget;
-      if ( $title )
+      if ($title) {
         echo $before_title . $title . $after_title;
-      $adText = stripslashes(self::$provider->get('widget-text')) ;
-      if (empty($adText)) echo "Empty Widget Text from <code>" . $this->name . "</code>" ;
+      }
+      $adText = stripslashes(self::$provider->get('widget-text'));
+      if (empty($adText)) {
+        echo "Empty Widget Text from <code>" . $this->name . "</code>";
+      }
       else {
-        $adText = ezExtras::handleDefaultText($adText,'160x600') ;
-        echo $this->decorate($adText) ;
+        $adText = ezExtras::handleDefaultText($adText, '160x600');
+        echo $this->decorate($adText);
       }
       echo $after_widget;
     }
+
     public static function setProvider(&$p) {
-      self::$provider =& $p ;
+      self::$provider = & $p;
     }
-  } // class ClicksorWidget
+
+  }
+
+  // class ClicksorWidget
 }
 if (!class_exists('Clicksor')) {
-class Clicksor extends provider {}
+
+  class Clicksor extends provider {
+
+  }
+
 }
-?>
