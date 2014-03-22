@@ -1,12 +1,12 @@
 <?php
 
 /*
-  Copyright (C) 2010 www.thulasidas.com
+  Copyright (C) 2008 www.ads-ez.com
 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 3 of the License, or (at
-  your option) any later version.
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3 of the
+  License, or (at your option) any later version.
 
   This program is distributed in the hope that it will be useful, but
   WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,17 +17,15 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (class_exists("provider")) {
-//  echo "Class <code>'provider'</code> already defined.\nConsider using <code>Easy Ads</code> for multiple ad providers." ;
-}
 if (!class_exists("adBlock")) {
 
   class adBlock extends ezOption { // an ad block that will be displayed
 
-    var $comment;
+    var $comment, $slug;
 
-    function __construct($name) {// constructior
+    function __construct($name, $slug='') {// constructior
       parent::ezOption('adBlock', $name);
+      $this->slug = $slug;
     }
 
     function decorate() {// apply styles
@@ -38,8 +36,9 @@ if (!class_exists("adBlock")) {
         $inline = 'style="' . $this->style . '"';
       }
       if (!empty($this->value)) {
-        $this->value = '<div class="easy-ads easy-ads-' . strtolower($this->name) . '" ' .
-                $inline . '>' . $this->value . "</div>\n";
+        $slug = $this->slug;
+        $this->value = "<div class='$slug $slug-" . strtolower($this->name) .
+                "' $inline>{$this->value}</div>\n";
       }
     }
 
@@ -401,7 +400,7 @@ if (!class_exists("provider")) {
       if ($this->isActive) {
         foreach ($this->plugin->positions as $key) {
           $name = $this->name . '-' . $key;
-          $this->adBlocks[$key] = new adBlock($name);
+          $this->adBlocks[$key] = new adBlock($name, $this->plugin->baseName);
           $adText = stripslashes($this->get('body')); // The option will be called 'body-'.$key
           $adText = ezExtras::handleDefaultText($adText);
           $this->adBlocks[$key]->set($adText);
@@ -420,7 +419,7 @@ if (!class_exists("provider")) {
           $alignment = $this->options[$showKey]->get();
           if ($alignment == 'no') {
             $name = $this->name;
-            $emptyText = "\n<!-- Easy Ads: Suppressed $name by $showKey option -->\n";
+            $emptyText = "\n<!-- {$this->plugin->name}: Suppressed $name by $showKey option -->\n";
             $adBlock->set($emptyText);
           }
           else {
@@ -447,7 +446,7 @@ if (!class_exists("provider")) {
       // Post meta options are of the kind:
       //   key = provider name, pname-top, pname-bottom, pname-widget etc
       //   value = no, left, right, center etc.
-      // Example: clicksor => no, adsense-bottom => left etc
+      // Example: adsense => no, adsense-bottom => left etc
       if (!$this->checkDependencyInjection(__FUNCTION__)) {
         return;
       }
@@ -463,7 +462,7 @@ if (!class_exists("provider")) {
         }
         if ($metaStyle == 'no') {
           foreach ($this->plugin->positions as $key) {
-            $emptyText = "\n<!-- Easy Ads: Suppressed $key by custom tag: $metaKey -->\n";
+            $emptyText = "\n<!-- {$this->plugin->name}: Suppressed $key by custom tag: $metaKey -->\n";
             $this->adBlocks[$key]->set($emptyText);
           }
           return;
@@ -488,7 +487,7 @@ if (!class_exists("provider")) {
             $style = 'text-align:center;display:block;';
           }
           if ($metaStyle == 'no') {
-            $emptyText = "\n<!-- Easy Ads: Suppressed $key by custom tag: $metaKey -->\n";
+            $emptyText = "\n<!-- {$this->plugin->name}: Suppressed $key by custom tag: $metaKey -->\n";
             $this->adBlocks[$key]->set($emptyText);
           }
           if (!empty($style)) {
@@ -506,6 +505,7 @@ if (!class_exists("provider")) {
       }
       if ($this->isActive) {
         foreach ($this->plugin->positions as $key) {
+          $this->adBlocks[$key]->slug = $this->plugin->baseName;
           $this->adBlocks[$key]->decorate();
         }
       }
@@ -550,18 +550,19 @@ if (!class_exists("providerWidget")) {
 
   class providerWidget extends WP_Widget {
 
-    var $name;
+    var $name, $slug, $plgName;
     public static $provider;
 
     function providerWidget($name = 'providerWidget', $provider = '') {
       if ($provider == '') {
         $provider = self::$provider;
       }
-      $this->name = $name;
+      $plgName = $provider->plugin->name;
       $widget_ops = array('classname' => 'providerWidget',
-          'description' => 'Show an Easy Ads (' .
+          'description' => "Show $plgName (" .
           $provider->name . ') block in your sidebar as a widget.');
-      parent::WP_Widget($name, 'Easy Ads: ' . $provider->name, $widget_ops);
+      parent::WP_Widget($name, "$plgName: " . $provider->name, $widget_ops);
+      $this->slug = strtolower(strtr($plgName, ' ', '-'));
     }
 
     public static function setProvider(&$p) {
@@ -576,8 +577,7 @@ if (!class_exists("providerWidget")) {
         $inline = 'style="' . $this->style . '"';
       }
       if (!empty($adText)) {
-        echo '<div class="easy-ads easy-ads-widget" ' .
-        $inline . '>' . $adText . "</div>\n";
+        echo "<div class='{$this->slug} {$this->slug}-widget' $inline>$adText</div>\n";
       }
     }
 
@@ -620,10 +620,7 @@ if (!class_exists("providerWidget")) {
       '">Title:  <input class="widefat" id="', $this->get_field_id('title'),
       '" name="', $this->get_field_name('title'), '" type="text" value="',
       $title, '" /></label></p>';
-      echo '<p>Configure it at <br />';
-      echo '<a href="options-general.php?page=easy-ads-lite.php"> ';
-      echo 'Settings &rarr; Easy Ads</a>';
-      echo '</p>';
+      echo "<p>Configure it at <br /><a href='options-general.php?page={$this->slug}.php'> Settings &rarr; {$this->plgName}</a></p>\n";
     }
 
   }
@@ -641,7 +638,10 @@ if (!class_exists('Overview')) {
     }
 
     function renderContent() {
-      $name = $this->name;
+      if (!$this->checkDependencyInjection(__FUNCTION__)) return ;
+      $ezPlugin =& $this->plugin ;
+      $slug = $ezPlugin->slug;
+      $plgName = $ezPlugin->name;
       $instructionText = '<h4>Instructions</h4>' .
               '<ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >' .
               ezTab::makeLIwithTooltip('Sign up', 'Sign up for the ad providers shown on the right (which will give me some referral income).') .
@@ -649,11 +649,12 @@ if (!class_exists('Overview')) {
               ezTab::makeLIwithTooltip('Enter Code', 'Enter your ad code into the text-boxes under the ad providers tabs.') .
               ezTab::makeLIwithTooltip('Configure', 'If needed, configure other options for each ad provider in the corresponding tab.') .
               "</ul><br />\n";
-      $fetureText = '<h4>Features</h4><ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >' .
+      $fetureText = '<h4>Features</h4>' .
+              '<ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >' .
               ezTab::makeLIwithTooltip('Admin Control Panel', 'The <b>Admin</b> tab gives you general options that apply to all providers, and common tools and actions (like Reset All Options, Clean Database etc.) You also have a button to migrate options between different plugin versions.') .
               ezTab::makeLIwithTooltip('Positions and Slots', 'Three positions (Top, Middle and Bottom) and a configurable number of slots for ads. (See the Admin Tab for details and an illustration.') .
-              ezTab::makeLIwithTooltip('Custom Field Control', 'In Easy Ads, you have more options [through <strong>custom fields</strong>] to control ad blocks in individual posts/pages. Add custom fields with keys like <strong>easy-ads-adsense-top, easy-ads-adsense-middle, easy-ads-adsense-bottom</strong> and with values like <strong>left, right, center</strong> or <strong>no</strong> to have control how the ad blocks show up in each post or page. The value <strong>no</strong> suppresses all the ad blocks in the post or page for that provider.') .
-              ezTab::makeLIwithTooltip('CSS Control', 'All <code>&lt;div&gt;</code>s that Easy Ads creates have the class attribute <code>easy-ads</code>. Furthermore, they have class attributes like <code>easy-ads-adsense-top</code>, <code>easy-ads-clicksor-bottom</code> etc., (ie, <code>easy-ads-provider-position</code>). You can set the style for these classes in your theme <code>style.css</code> to control their appearance.') .
+              ezTab::makeLIwithTooltip('Custom Field Control', sprintf('In %s, you have more options [through <strong>custom fields</strong>] to control ad blocks in individual posts/pages. Add custom fields with keys like <strong>%s-adsense-top, %s-adsense-middle, %s-adsense-bottom</strong> and with values like <strong>left, right, center</strong> or <strong>no</strong> to have control how the ad blocks show up in each post or page. The value <strong>no</strong> suppresses all the ad blocks in the post or page for that provider.', $plgName, $slug, $slug, $slug)) .
+              ezTab::makeLIwithTooltip('CSS Control', sprintf('All <code>&lt;div&gt;</code>s that %s creates have the class attribute <code>%s</code>. Furthermore, they have class attributes like <code>%s-adsense-top</code>, <code>%s-clicksor-bottom</code> etc., (ie, <code>%s-provider-position</code>). You can set the style for these classes in your theme <code>style.css</code> to control their appearance.', $plgName, $slug, $slug, $slug, $slug)) .
               "</ul><br />\n";
       $planText = '<h4>Future Plans</h4><ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >' .
               ezTab::makeLIwithTooltip('Widgets', 'I will release options to include sidebar widgets with optional ad customization. That is, you will be able to use the same ad code for both main text and the widgets, or have different texts, to be customized on the widgets page.') .
@@ -675,8 +676,7 @@ if (!class_exists('Overview')) {
       echo $fetureText;
       echo $planText;
       echo '<table><tr>';
-      include ('myPlugins.php');
-      $plgName = 'easy-ads';
+      $ez = $ezPlugin->ez;
       include ('head-text.php');
       echo '</tr></table>';
       echo "</td></tr></table>\n";
@@ -700,9 +700,11 @@ if (!class_exists('Overview')) {
       echo "</table></td>\n";
 
       echo "</tr></table>\n";
+      echo "<form method='post' action='#'>";
+      $ezPlugin->ezTran->renderTranslator();
+      echo "</form>";
       echo '<div style="background-color:#fcf;padding:5px;border: solid 1px">';
-      $fname = dirname(__FILE__) . '/support.php';
-      include_once($fname);
+      $ez->renderSupport();
       echo '</div>';
     }
 
@@ -712,34 +714,34 @@ if (!class_exists('Overview')) {
 }
 if (!class_exists('Admin')) {
 
-  class Admin extends ezAdmin {
+  class Admin extends EzAdminTab {
 
     function __construct() {
-      parent::ezAdmin("Admin", "");
+      parent::EzAdminTab("Admin", "");
       $this->isActive = false;
       $this->isAdmin = true;
     }
 
     function renderContent() {
+      if (!$this->checkDependencyInjection(__FUNCTION__)) return ;
+      $ezPlugin =& $this->plugin ;
+      $slug = $ezPlugin->baseName;
+      $plgName = $ezPlugin->name;
       $infoText = '<h4>Ad Positions, Slots and Blocks</h4>' .
               'You can define ad blocks in three positions in your post - Top, Middle and Bottom. Each position can have multiple "slots". See the picture for details. By default, you have one slot per position, but you can change it below [Pro feature]. In addition, you have widgets that you can place anywhere on your sidebar as many times as you want, by <a href="widgets.php"> Appearance &rarr; Widgets</a>.';
       $compText = '<h4>Competition</h4>' .
-              'The providers supported in Easy Ads may not all be compatible with each other, or, in particular, with AdSense. Be careful how you use them. But competition is probably a good thing. You may find your earnings go up because of it, which is the objective behind this aptly named plugin: Easy Ads.';
+              sprintf('The providers supported in %s may not all be compatible with each other, or, in particular, with AdSense. Be careful how you use them. But competition is probably a good thing. You may find your earnings go up because of it, which is the objective behind my many advertising plugins.', $plgName);
       $adminText = '<h4>Admin Control Panel</h4>' .
               'This Admin tab gives you a control panel with tools and options that apply to the ad blocks from all the providers, en masse. You can <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >' .
               ezTab::makeLIwithTooltip('Set Active', 'By checking the box against their name below, you can set an ad provider as <b>Active</b> so that their ads appear on your pages. When you deactivate a provider, the corresponding tab header  will sport red fonts.') .
               ezTab::makeLIwithTooltip('Reset All Options', 'You can reset all options to their default values if you feel that you have irrevocably messed them up.') .
               ezTab::makeLIwithTooltip('Migrate Options ', 'When you upgrade the plugin to a newer version, some of the options may become incompatible. You can migrate your old options (to the extent possible) to the new version using this button.') .
-              ezTab::makeLIwithTooltip('Clean Database', 'This button gives you the option of cleaning all the Easy Ads options from your databse as a prelude to deactivating or deleting your plugin. In a future release, you will have a button to deactivate the plugin directly.') .
+              ezTab::makeLIwithTooltip('Clean Database', sprintf('This button gives you the option of cleaning all the %s options from your databse as a prelude to deactivating or deleting your plugin. In a future release, you will have a button to deactivate the plugin directly.', $plgName)) .
               "</ul><br />\n";
-      if ($this->checkDependencyInjection(__FUNCTION__)) {
-        $url = $this->plugin->URL;
-      }
-      else {
-        $url = '/wp-content/plugins/easy-ads';
-      }
-      $picText = "<span id='ad-slot' style='text-decoration:underline' onmouseover=\"Tip('" .
-              htmlspecialchars("In the Pro version, you can see an illustration of the ad slots.<br /><a href=\"http://buy.thulasidas.com/easy-ads\" title=\"Buy the Pro version of the Easy Ads plugin for \$8.95\"><b>Get Pro Version!</b></a>") .
+      $url = $this->plugin->URL;
+      $picText = "<span id='ad-slot' style='text-decoration:underline' " .
+              "onmouseover=\"Tip('" .
+              htmlspecialchars("In the Pro version, you can see an illustration of the ad slots.<br /><a href=\"http://buy.thulasidas.com/$slug\" title=\"Buy the Pro version of the $plgName plugin for \$5.95\"><b>Get Pro Version!</b></a>") .
               "', WIDTH, 200,  FIX, [this, -40, -140], TITLE, 'Click to close', STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true)\" onmouseout=\"UnTip()\">Hover on the picture to see details<br /><br /><img src='" . $url . "/ad-slots-small.gif' border='0' alt='[ad-slots-small]' /></span>";
       echo '<table width="95%" style="padding:10px;border-spacing:10px;">' . "\n";
       echo '<tr><th colspan="2"><h3>General Information</h3></th></tr>' . "\n";
@@ -761,11 +763,10 @@ if (!class_exists('Admin')) {
     }
 
     function renderForm() {
-      echo ('<div style="background-color:#cff;padding:5px;border: solid 1px">');
-      $plgName = 'easy-ads';
-      @include('myPlugins.php');
-      @include (dirname(__FILE__) . '/why-pro.php');
-      echo ('</div>');
+      if (!$this->checkDependencyInjection(__FUNCTION__)) return ;
+      $ezPlugin =& $this->plugin ;
+      $ez = $ezPlugin->ez;
+      $ez->renderWhyPro();
     }
 
     function defineOptions() {

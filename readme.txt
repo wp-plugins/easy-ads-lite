@@ -4,7 +4,8 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
 Tested up to: 3.8
-Stable tag: 2.71
+Stable tag: 3.00
+License: GPL2 or later
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
 
@@ -48,22 +49,15 @@ The Pro version costs $8.95 and can be [purchased online](http://buy.thulasidas.
 I would like to hear from you if you have any feature requests or comments.
 
 1. Ad Rotation: I will provide means to rotate ads among various providers with user-defined frequency.
-1. Tooltip Help: Most of the fields and buttons will feature JS tool tip to help the user along.
 1. More Providers: This plugin is designed with extensibility in mind. I will keep adding more ad providers, or even let the end-users add them.
 1. Expertise Level: I plan to introduce expertise levels (Easy, Advanced and Expert tabs) within the tab for each ad provider.
 1. Max Number of Ad blocks: Since some providers require you to limit the number of ad blocks to some policy-driven ceiling, I will expose that option to you. Also to be customized is the number of ads per slot. In this initial release, there are three slots (top, middle and bottom), each of which can take two ad blocks. In a future release, you will have much more customization options.
 1. Internationalization: Future versions will provide MO/PO files for internationalization.
 1. Documentation: As this plugin may have an overwhelming set of options and features, I will try to write a comprehensive help system for it.
 
-= New in this Release =
-
-Adding options to suppress ads on sticky front page or search pages.
-
 == Upgrade Notice ==
 
-= 2.71 =
-
-Adding options to suppress ads on sticky front page or search pages.
+Major changes to the design -- adding a translation interface, getting ready to change options handling.
 
 == Screenshots ==
 
@@ -84,7 +78,7 @@ Easy Ads is the freely distributed version of a premium plugin. The [Pro version
 
 = How can I contact the plugin author if I need help? =
 
-This plugin uses a paid support model in order to manage the support load. Each [support ticket](http://support.thulasidas.com "Ask a support question") will be charged at $0.95 for the Lite version (and for the Pro version after a short free support period). The support ticket is valid for 48 hours, and further follow-up questions will call for a new support ticket.
+This plugin uses a paid support model in order to manage the support load. Each [support ticket](http://support.thulasidas.com "Ask a support question") will be charged at $0.95 for the Lite version (and for the Pro version after a short free support period). The support ticket is valid for 72 hours, and further follow-up questions will call for a new support ticket.
 
 = I still don't get it. Porn and site block - that you already have during Asdense ad setup? =
 
@@ -120,6 +114,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V3.00: Major changes to the design -- adding a translation interface, getting ready to change options handling. [Mar 22, 2014]
 * V2.71: Adding options to suppress ads on sticky front page or search pages. [Jan 5, 2014]
 * V2.70: Compatibility checks for WordPress V3.8. Bug fixes in options migration. [Dec 18, 2013]
 * V2.60: Compatibility checks for WordPress V3.7. [Nov 11, 2013]
