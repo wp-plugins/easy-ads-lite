@@ -3,7 +3,7 @@
 /*
   Plugin Name: Easy Ads
   Plugin URI: http://www.thulasidas.com/adsense
-  Version: 3.00
+  Version: 3.10
   Description: <em>Lite Version</em>: Make more money from your blog using multiple ad providers (<a href="http://signup.clicksor.com/pub/index.php?ref=105268" target="_blank">Clicksor</a>, <a href="http://chitika.com/">Chitika</a>, <a href="http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404" target="_blank">BidVertiser</a> in addition to <a href="http://adsense.google.com" target="_blank">AdSense</a>). Configure it at <a href="options-general.php?page=easy-ads-lite.php">Settings &rarr; Easy Ads</a>.
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
@@ -26,31 +26,17 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (file_exists(dirname(__FILE__) . '/validate.php')) {
-  $fname = dirname(__FILE__) . '/validate.php';
-  include($fname);
-  $fname = dirname(__FILE__) . '/ezAPI.php';
-  include($fname);
-  $fname = dirname(__FILE__) . '/ezExtras.php';
-  @include($fname);
-  $fname = dirname(__FILE__) . '/providers.php';
-  include($fname);
-  $fname = dirname(__FILE__) . '/chitika.php';
-  include($fname);
-  $fname = dirname(__FILE__) . '/clicksor.php';
-  include($fname);
-  $fname = dirname(__FILE__) . '/bidvertiser.php';
-  include($fname);
-  $fname = dirname(__FILE__) . '/google.php';
-  include($fname);
-}
-if (class_exists("GoogleAdsense")) {
-  die(__("<strong><em>Google AdSense</em></strong> (Lite or Pro) plugin seems to be active.<br />Please deactivate it before activating <strong><em>Easy Ads</em></strong>.", "easy-adsenser"));
-}
+
+$plg = "Easy Ads Lite";
 if (class_exists("easyAds")) {
-  die(__("<strong><em>Easy Ads Pro</em></strong> seems to be active.<br />You cannot use the Lite version when you have <strong><em>Easy Ads Pro</em></strong> active.", "easy-adsenser"));
+  $lite = plugin_basename(__FILE__);
+  include_once('ezDenyLite.php');
+  ezDenyLite($plg, $lite);
 }
 else {
+  $plgFile = __FILE__;
+  $pwd = dirname($plgFile);
+  require($pwd . '/validate.php');
 
   class easyAds extends ezPlugin {
 
@@ -117,9 +103,9 @@ else {
         require_once($this->plgDir . '/EzTran.php');
         $this->ezTran = new EzTran(__FILE__, "Easy Ads", "easy-ads");
         $this->ezTran->setLang();
-        require_once($this->plgDir . '/myPlugins.php');
+        require($this->plgDir . '/myPlugins.php');
         $slug = $this->slug;
-        $plg = $myPlugins[$slug];
+        $plg = $this->myPlugins[$slug];
         $plgURL = $this->plgURL;
         require_once($this->plgDir . '/EzAdmin.php');
         $ez = new EzAdmin($plg, $slug, $plgURL);
@@ -127,7 +113,6 @@ else {
           $ez->killAuthor = true;
         }
         $this->ez = $ez;
-        $this->myPlugins = $myPlugins;
       }
     }
 

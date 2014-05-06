@@ -1,21 +1,22 @@
 <?php
 
 /*
-  Copyright (C) 2010 www.thulasidas.com
+  Copyright (C) 2008 www.ads-ez.com
 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 3 of the License, or (at
-  your option) any later version.
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3 of the
+  License, or (at your option) any later version.
 
-  This program is distributed in the hope that it will be useful, but
-  WITHOUT ANY WARRANTY; without even the implied warranty of
+  This program is distributed in the hope that they will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  along with the programs.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 if (!class_exists('ClicksorWidget')) {
 
   class ClicksorWidget extends providerWidget {
@@ -35,7 +36,7 @@ if (!class_exists('ClicksorWidget')) {
       }
       $adText = stripslashes(self::$provider->get('widget-text'));
       if (empty($adText)) {
-        echo "Empty Widget Text from <code>" . $this->name . "</code>";
+        echo sprintf(__("Empty Widget Text from %s", 'easy-ads'), "<code>" . $this->name . "</code>");
       }
       else {
         $adText = ezExtras::handleDefaultText($adText, '160x600');
@@ -50,8 +51,8 @@ if (!class_exists('ClicksorWidget')) {
 
   }
 
-  // class ClicksorWidget
-}
+}  // class ClicksorWidget
+
 if (!class_exists('Clicksor')) {
 
   class Clicksor extends provider {

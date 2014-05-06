@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Copyright (C) 2010 www.thulasidas.com
+  Copyright (C) 2008 www.ads-ez.com
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 if (!class_exists('BidVertiserWidget')) {
 
   class BidVertiserWidget extends providerWidget {
@@ -35,7 +36,7 @@ if (!class_exists('BidVertiserWidget')) {
       }
       $adText = stripslashes(self::$provider->get('widget-text'));
       if (empty($adText)) {
-        echo "Empty Widget Text from <code>" . $this->name . "</code>";
+        echo sprintf(__("Empty Widget Text from %s", 'easy-ads'), "<code>" . $this->name . "</code>");
       }
       else {
         $adText = ezExtras::handleDefaultText($adText, '160x600');
@@ -50,8 +51,8 @@ if (!class_exists('BidVertiserWidget')) {
 
   }
 
-  // class BidVertiserWidget
-}
+}  // class BidVertiserWidget
+
 if (!class_exists('BidVertiser')) {
 
   class BidVertiser extends provider {
@@ -59,3 +60,4 @@ if (!class_exists('BidVertiser')) {
   }
 
 }
+
