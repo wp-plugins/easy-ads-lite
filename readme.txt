@@ -3,7 +3,7 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 3.12
 License: GPL2 or later
 
