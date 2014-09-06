@@ -57,7 +57,7 @@ I would like to hear from you if you have any feature requests or comments.
 
 == Upgrade Notice ==
 
-Updating translations, minor bug fixes.
+Compatibility with WP4.0.
 
 == Screenshots ==
 
