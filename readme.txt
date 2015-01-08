@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
-Tested up to: 4.0
-Stable tag: 3.30
+Tested up to: 4.1
+Stable tag: 3.40
 License: GPL2 or later
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
@@ -57,7 +57,7 @@ I would like to hear from you if you have any feature requests or comments.
 
 == Upgrade Notice ==
 
-Automatic options migration upon plugin activation.
+Compatibility with WP4.1.
 
 == Screenshots ==
 
@@ -114,6 +114,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V3.40: Compatibility with WP4.1. [Jan 8, 2015]
 * V3.30: Automatic options migration upon plugin activation. [Sep 26, 2014]
 * V3.21: Minor change to the admin interface. [Sep 9, 2011]
 * V3.20: Compatibility with WP4.0. [Sep 6, 2014]
