@@ -3,8 +3,8 @@ Contributors: manojtd
 Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation, wordpress google adsense
 Requires at least: 2.8
-Tested up to: 4.2
-Stable tag: 3.60
+Tested up to: 4.3
+Stable tag: 3.70
 License: GPL2 or later
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
@@ -57,7 +57,7 @@ I would like to hear from you if you have any feature requests or comments.
 
 == Upgrade Notice ==
 
-Compatibility with WordPress 4.2.
+Compatibility with WordPress 4.3.
 
 == Screenshots ==
 
@@ -65,6 +65,16 @@ Compatibility with WordPress 4.2.
 2. How to set the options for one provider (Chitika) in *Easy Ads*.
 
 == Installation ==
+
+= Searching =
+
+The easiest way to install this plugin is to use the WordPress Admin interface. Go to your admin dashboard, find the "Plugins" menu, and click on "Add New". Search for this plugin and click on "Install Now" and follow the WordPress instructions.
+
+= Uploading =
+
+If you want to download it and manually install, you can again use the WordPress dashboard interface. First download the plugin zip file to your local computer. Then go to your admin dashboard, find the "Plugins" menu, and click on "Add New". After clicking on the "Add New" menu item as above, click on "Upload" (below the title "Install Plugins" near the top). Browse for your downloaded zip file, upload it and activate the plugin.
+
+= FTP =
 
 1. Upload the *Easy Ads* plugin (the whole easy-ads-lite folder) to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
@@ -114,6 +124,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V3.70: Compatibility with WordPress 4.3. [Aug 10, 2015]
 * V3.60: Compatibility with WordPress 4.2. [April 25, 2015]
 * V3.50: Refactoring and documentation changes. [Apr 2, 2015]
 * V3.40: Compatibility with WP4.1. [Jan 8, 2015]

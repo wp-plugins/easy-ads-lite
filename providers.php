@@ -558,7 +558,7 @@ if (!class_exists("providerWidget")) {
       $plgName = $provider->plugin->name;
       $widget_ops = array('classname' => 'providerWidget',
           'description' => sprintf(__("Show %s (%s) block in your sidebar as a widget.", 'easy-ads'), $plgName, $provider->name));
-      parent::WP_Widget($name, "$plgName: " . $provider->name, $widget_ops);
+      parent::__construct($name, "$plgName: {$provider->name}", $widget_ops);
       $this->slug = strtolower(strtr($plgName, ' ', '-'));
     }
 
