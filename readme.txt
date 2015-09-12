@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation
 Requires at least: 2.8
 Tested up to: 4.3
-Stable tag: 3.80
+Stable tag: 3.81
 License: GPL2 or later
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
@@ -46,7 +46,7 @@ The Pro version costs $8.95 and can be [purchased online](http://buy.thulasidas.
 
 = Future Plans =
 
-I would like to hear from you if you have any feature requests or comments.
+= I would like to hear from you if you have any feature requests or comments. =
 
 1. Ad Rotation: I will provide means to rotate ads among various providers with user-defined frequency.
 1. More Providers: This plugin is designed with extensibility in mind. I will keep adding more ad providers, or even let the end-users add them.
@@ -57,12 +57,15 @@ I would like to hear from you if you have any feature requests or comments.
 
 == Upgrade Notice ==
 
-Major changes to fix HTML5 validation errors.
+Documentation changes.
 
 == Screenshots ==
 
 1. *Easy Ads* "Overview" tab.
-2. How to set the options for one provider (Chitika) in *Easy Ads*.
+2. Admin tab showing ad slot locations.
+3. Pro Featires.
+4. How to set the options for Google AdSense.
+5. How to set the options for Chitika.
 
 == Installation ==
 
@@ -124,6 +127,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V3.81: Documentation changes. [Sep 13, 2015]
 * V3.80: Major changes to fix HTML5 validation errors. [Sep 10, 2015]
 * V3.70: Compatibility with WordPress 4.3. [Aug 10, 2015]
 * V3.60: Compatibility with WordPress 4.2. [April 25, 2015]
