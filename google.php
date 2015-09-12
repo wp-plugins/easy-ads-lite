@@ -135,8 +135,8 @@ if (!class_exists('AdSense')) {
 
       $option = &$this->addOption('message', 'intro');
       $properties = array('desc' => sprintf(__("About %s", 'easy-ads'), $this->name),
-          'before' => '<br /><table><tr><th colspan="3"><h4>',
-          'after' => '</h4></th></tr><tr align="left" valign="middle"><td width="20%">');
+          'before' => '<br /><table><tr><th colspan="3"><b>',
+          'after' => '</b></th></tr><tr style="text-align:left;vertical-align:middle"><td style="width:20%">');
       $option->set($properties);
 
       $option = &$this->addOption('checkbox', 'active');
@@ -149,21 +149,13 @@ if (!class_exists('AdSense')) {
       $option->set($properties);
 
       $option = &$this->addOption('message', 'referral');
-      $referral = '';
-      if (!empty($this->referral)) {
-        $referral = htmlspecialchars_decode($this->referral);
-      }
-      $properties = array('desc' => $referral,
-          'before' => '</td><td width="20%">&nbsp;',
+      $properties = array('desc' => $this->referral,
+          'before' => '</td><td style="width:20%">&nbsp;',
           'after' => '</td>');
       $option->set($properties);
 
       $option = &$this->addOption('message', 'info');
-      $desc = '';
-      if (!empty($this->desc)) {
-        $desc = htmlspecialchars_decode($this->desc);
-      }
-      $properties = array('desc' => $desc,
+      $properties = array('desc' => $this->desc,
           'before' => '<td >',
           'after' => '</td></tr></table><hr />');
       $option->set($properties);
@@ -173,7 +165,7 @@ if (!class_exists('AdSense')) {
       $properties = array('desc' => 'Tabbie',
           'title' => __(" tab interface ", 'easy-ads'),
           'value' => $this->name,
-          'before' => '<table><tr align="center" valign="top"><td width="55%"><br />',
+          'before' => '<table style="border-collapse:separate;border-spacing:10px;"><tr style="text-align:left;vertical-align:top"><td style="width:55%"><br />',
           'after' => '</td>');
       $miniTab->set($properties);
 
@@ -195,8 +187,8 @@ if (!class_exists('AdSense')) {
       $properties = array('desc' => __("Your AdSense Account Name: ", 'easy-ads'),
           'title' => __("Enter your AdSense Pub-ID", 'easy-ads'),
           'value' => "Your AdSense ID",
-          'before' => '<table width="80%"><tr><td width="50%">',
-          'between' => '</td><td width="50%">',
+          'before' => '<table style="width:80%"><tr><td style="width:50%">',
+          'between' => '</td><td style="width:50%">',
           'after' => '</td></tr>');
       $option->set($properties);
 
@@ -214,8 +206,8 @@ if (!class_exists('AdSense')) {
           'title' => __('Choose the Format', 'easy-ads'),
           'value' => "300x250",
           'style' => 'width:80%',
-          'before' => '<tr><td width="50%">',
-          'between' => '</td><td width="50%">',
+          'before' => '<tr><td style="width:50%">',
+          'between' => '</td><td style="width:50%">',
           'after' => '</td></tr>');
       $select->set($properties);
 
@@ -284,8 +276,8 @@ if (!class_exists('AdSense')) {
           'value' => '164675',
           'title' => __("Type in or pick color", 'easy-ads'),
           'style' => 'width:80%',
-          'before' => '<table width="80%"><tr><td width="50%">',
-          'between' => '</td><td width="50%">',
+          'before' => '<table style="width:80%"><tr><td style="width:50%">',
+          'between' => '</td><td style="width:50%">',
           'after' => '</td></tr>');
       $option->set($properties);
 
@@ -294,8 +286,8 @@ if (!class_exists('AdSense')) {
           'value' => '2666F5',
           'title' => __("Type in or pick color", 'easy-ads'),
           'style' => 'width:80%',
-          'before' => '<table width="80%"><tr><td width="50%">',
-          'between' => '</td><td width="50%">',
+          'before' => '<tr><td>',
+          'between' => '</td><td style="width:50%">',
           'after' => '</td></tr>');
       $option->set($properties);
 
@@ -371,8 +363,8 @@ if (!class_exists('AdSense')) {
       $option = &$this->addOption('message', 'alignment');
       $properties = array(
           'desc' => "<b>" . __("Ad Alignment. Where to show ad blocks?", 'easy-ads') . "</b>",
-          'before' => '<td align="center"><table><tr align="center" valign="middle"><th colspan="5">',
-          'after' => "</th></tr>\n" . '<tr align="center" valign="middle">' .
+          'before' => '<td><table><tr style="text-align:center;vertical-align:middle"><th colspan="5">',
+          'after' => "</th></tr>\n" . '<tr style="text-align:center;vertical-align:middle">' .
           '<td>&nbsp;</td><td>&nbsp;Align Left&nbsp;</td><td>&nbsp;Center&nbsp;</td>' .
           '<td>&nbsp;Align Right&nbsp;</td><td>&nbsp;Suppress&nbsp;</td></tr>');
       $option->set($properties);
@@ -381,7 +373,7 @@ if (!class_exists('AdSense')) {
       $properties = array('desc' => __('Top', 'easy-ads'),
           'title' => __('Where to show the top ad block?', 'easy-ads'),
           'value' => "left",
-          'before' => '<tr align="center" valign="middle"><td>Top</td>',
+          'before' => '<tr style="text-align:center;vertical-align:middle"><td>Top</td>',
           'after' => '</tr>');
       $radio->set($properties);
 
@@ -413,7 +405,7 @@ if (!class_exists('AdSense')) {
       $properties = array('desc' => __('Middle', 'easy-ads'),
           'title' => __('Where to show the mid-text ad block?', 'easy-ads'),
           'value' => "left",
-          'before' => '<tr align="center" valign="middle"><td>Middle</td>',
+          'before' => '<tr style="text-align:center;vertical-align:middle"><td>Middle</td>',
           'after' => '</tr>');
       $radio->set($properties);
 
@@ -446,7 +438,7 @@ if (!class_exists('AdSense')) {
           'title' => __('Where to show the bottom ad block?', 'easy-ads'),
           'value' => "right",
           'after' => '<br />',
-          'before' => '<tr align="center" valign="middle"><td>Bottom</td>',
+          'before' => '<tr style="text-align:center;vertical-align:middle"><td>Bottom</td>',
           'after' => '</tr></table>');
       $radio->set($properties);
 
@@ -477,7 +469,7 @@ if (!class_exists('AdSense')) {
       $option = &$this->addOption('message', 'show_or_hide');
       $properties = array(
           'desc' => "<b>" . __("Suppress Ad Blocks in:", 'easy-ads') . "</b>",
-          'before' => '<table><tr align="center" valign="middle"><td>',
+          'before' => '<table><tr style="text-align:left;vertical-align:middle"><td>',
           'after' => '</td><td></td></tr>');
       $option->set($properties);
 
