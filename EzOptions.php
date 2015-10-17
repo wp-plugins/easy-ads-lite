@@ -118,7 +118,7 @@ if (!class_exists("EzBaseOption")) {
         }
         $toolTip = "onmouseover=\"Tip('" . htmlspecialchars($this->title)
                 . "', WIDTH, {$this->tipWidth}, TITLE, '{$this->tipTitle}'"
-                . $warning . ", FIX, [this, 5, 5])\" onmouseout=\"UnTip()\"";
+                . $warning . ", FIX, [this, 5, 7])\" onmouseout=\"UnTip()\"";
       }
       else {
         $toolTip = "";
@@ -393,7 +393,7 @@ if (!class_exists("EzBaseOption")) {
 
     function render() {
       $this->preRender();
-      echo "<input type='{$this->type}' id='{$this->name}' name='{$this->name}' ";
+      echo "<input type='{$this->type}' class='button button-primary' id='{$this->name}' name='{$this->name}' ";
       if (!empty($this->style)) {
         echo " style='{$this->style}'";
       }
@@ -553,17 +553,11 @@ if (!class_exists("EzBasePlugin")) {
       require_once($this->plgDir . '/EzTran.php');
       $this->ezTran = new EzTran($this->plgFile, "{$this->name}{$this->strPro}", $this->domain);
       $this->ezTran->setLang();
+      $this->init();
     }
 
     function __destruct() {
 
-    }
-
-    function EzBasePlugin($slug, $name, $file) {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct($slug, $name, $file);
-        register_shutdown_function(array($this, "__destruct"));
-      }
     }
 
     function mkDefaultOptions() {
@@ -604,31 +598,38 @@ if (!class_exists("EzBasePlugin")) {
       wp_nonce_field("$this->prefix-submit", "$this->prefix-nonce");
     }
 
-    function renderSubmitButtons() {
+    function renderSubmitButtons($uninstall = false) {
       $update = new EzSubmit('saveChanges');
       $update->desc = __('Save Changes', 'easy-common');
       $update->title = __('Save the changes as specified above', 'easy-common');
+      $update->tipWidth = 130;
       $update->tipTitle = $update->desc;
 
       $reset = new EzSubmit('resetOptions');
       $reset->desc = __('Reset Options', 'easy-common');
       $reset->title = __('This <b>Reset Options</b> button discards all your changes and loads the default options. This is your only warning!', 'easy-common');
+      $reset->tipWidth = 150;
       $reset->tipWarning = true;
 
       $cleanDB = new EzSubmit('cleanDB');
       $cleanDB->desc = __('Clean Database', 'easy-common');
-      $cleanDB->title = __('The <b>Database Cleanup</b> button discards all your AdSense settings you have saved so far for <b>all</b> the themes, including the current one. Use it only if you know that you will not be using these themes. Please be careful with all database operations -- keep a backup.', 'easy-common');
+      $cleanDB->title = __('The <b>Database Cleanup</b> button discards all your settings for this plugin that you have saved so far for <b>all</b> the themes, including the current one. Use it only if you know that you will not be using these themes. Please be careful with all database operations -- keep a backup.', 'easy-common');
       $cleanDB->tipWarning = true;
 
-      $uninstall = new EzSubmit('uninstall');
-      $uninstall->desc = __('Uninstall', 'easy-common');
-      $uninstall->title = __('The <b>Uninstall</b> button really kills %s after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-common');
-      $uninstall->tipWarning = true;
+      if ($uninstall) {
+        $uninstall = new EzSubmit('uninstall');
+        $uninstall->desc = __('Uninstall', 'easy-common');
+        $uninstall->title = __('The <b>Uninstall</b> button really kills this plugin after cleaning up all the options it wrote in your database. This is your only warning! Please be careful with all database operations -- keep a backup.', 'easy-common');
+        $uninstall->tipWidth = 160;
+        $uninstall->tipWarning = true;
+      }
 
       $update->render();
       $reset->render();
       $cleanDB->render();
-      $uninstall->render();
+      if ($uninstall) {
+        $uninstall->render();
+      }
     }
 
     function handleSubmits() {
@@ -638,7 +639,7 @@ if (!class_exists("EzBasePlugin")) {
       if (empty($this->prefix)) {
         $this->adminMsg = "<div class='error'><p><strong>" .
                 __('Cannot handle submits without specifying plugin!', 'easy-common') .
-                "</strong></div>";
+                "</strong></p></div>";
         return;
       }
       if (!check_admin_referer("$this->prefix-submit", "$this->prefix-nonce")) {
@@ -664,13 +665,13 @@ if (!class_exists("EzBasePlugin")) {
 
         $this->adminMsg = "<div class='updated'><p><strong>" .
                 __('Settings Updated.', 'easy-common') .
-                "</strong></div>";
+                "</strong></p></div>";
       }
       else if (isset($_POST['resetOptions'])) {
         $this->resetOptions();
         $this->adminMsg = "<div class='updated'><p><strong>" .
                 __('Ok, all your settings have been discarded!', 'easy-common') .
-                "</strong></div>";
+                "</strong></p></div>";
       }
       else if (isset($_POST['cleanDB']) || isset($_POST['uninstall'])) {
         $this->resetOptions();
@@ -685,7 +686,7 @@ if (!class_exists("EzBasePlugin")) {
                   __('This plugin can be deactivated now. ', 'easy-common') .
                   "<a href='plugins.php'>" .
                   __('Go to Plugins', 'easy-common') .
-                  "</a>.</strong></div>";
+                  "</a>.</strong></p></div>";
         }
       }
     }
@@ -710,7 +711,7 @@ if (!class_exists("EzBasePlugin")) {
         require_once($this->plgDir . '/EzAdmin.php');
         $this->ezAdmin = new EzAdmin($plg, $slug, $plgURL);
       }
-      if (!empty($this->options['kill_author'])) {
+      if (!empty($this->options['kill_author']) || isset($_POST['kill_author'])) {
         $this->ezAdmin->killAuthor = true;
       }
       $this->ezAdmin->domain = $this->domain;
@@ -738,6 +739,37 @@ if (!class_exists("EzBasePlugin")) {
       // $this->handleSubmits(); // This seems to do cause duplicate calls
       $this->mkEzAdmin();
       return $this->ezAdmin;
+    }
+
+    function adminMenu() {
+      $mName = "$this->name $this->strPro";
+      $adminPage = add_options_page($mName, $mName, 'activate_plugins', basename($this->plgFile), array($this, 'printAdminPage'));
+      add_action('load-' . $adminPage, array($this, 'load'));
+    }
+
+    function pluginActionLinks($links, $file) {
+      if ($file == plugin_basename($this->plgFile)) {
+        $settings_link = "<a href='options-general.php?page="
+                . basename($this->plgFile)
+                . "'>Settings</a>";
+        array_unshift($links, $settings_link);
+      }
+      return $links;
+    }
+
+    function init() { // Add admin page etc. Overrirde if needed.
+      add_action('admin_menu', array($this, 'adminMenu'));
+      add_filter('plugin_action_links', array($this, 'pluginActionLinks'), -10, 2);
+    }
+
+    function adminPrintFooterScripts() { // JS in admin page. Overrirde if needed.
+
+    }
+
+    function load() { // Runs inits specific to the admin page (JS/CSS etc.)
+      wp_register_script('wzToolTip', "$this->plgURL/wz_tooltip.js", array(), '2.0', true);
+      wp_enqueue_script('wzToolTip');
+      add_action('admin_print_footer_scripts', array($this, 'adminPrintFooterScripts'));
     }
 
   }

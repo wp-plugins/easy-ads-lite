@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation
 Requires at least: 2.8
 Tested up to: 4.3
-Stable tag: 3.81
+Stable tag: 3.82
 License: GPL2 or later
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
@@ -15,7 +15,7 @@ Easy Ads displays AdSense and its alternatives on your blog pages and sidebar wi
 
 AdSense dumped you? Don't be heartbroken; there are other fish in the sea. You may find happiness with [BidVertiser](http://www.bidvertiser.com/bdv/bidvertiser/bdv_ref_publisher.dbm?Ref_Option=pub&Ref_PID=229404 "A fine ad provider"), Chitika or Clicksor. Use *Easy Ads*, and you may get lucky!
 
-Note that this plugin requires PHPv5.0+. If it does not work on your web host, please consider [Easy AdSense](http://wordpress.org/extend/plugins/easy-adsense-lite/ "Freely available from this directory") or [Easy AdSense Pro](http://buy.thulasidas.com/easy-adsense "The Pro version of the most popular plugin to insert AdSense on your blog for $4.95").
+Note that this plugin requires PHPv5.3+. If it does not work on your web host, please consider [Easy AdSense Lite](http://wordpress.org/extend/plugins/easy-adsense-lite/ "Freely available from this directory") or [Easy AdSense Pro](http://buy.thulasidas.com/easy-adsense "The Pro version of the most popular plugin to insert AdSense on your blog for $7.95").
 
 = Features =
 
@@ -57,7 +57,7 @@ The Pro version costs $8.95 and can be [purchased online](http://buy.thulasidas.
 
 == Upgrade Notice ==
 
-Documentation changes.
+Enhancements in the admin interface.
 
 == Screenshots ==
 
@@ -127,6 +127,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V3.82: Enhancements in the admin interface. [Oct 17, 2015]
 * V3.81: Documentation changes. [Sep 13, 2015]
 * V3.80: Major changes to fix HTML5 validation errors. [Sep 10, 2015]
 * V3.70: Compatibility with WordPress 4.3. [Aug 10, 2015]
