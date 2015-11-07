@@ -21,7 +21,8 @@ if (!class_exists("EzBaseOption")) {
 
   class EzBaseOption { // base EzOption class
 
-    var $name, $desc, $title, $tipTitle, $tipWidth, $tipWarning, $value, $type;
+    var $name, $desc, $title, $tipTitle, $tipWarning, $value, $type;
+    var $tipWidth = 240, $tipX = 5, $tipY = 7;
     var $width, $labelWidth, $height, $before, $between, $after, $style;
 
     function EzBaseOption($type, $name) {
@@ -31,7 +32,9 @@ if (!class_exists("EzBaseOption")) {
       }
       $this->type = $type;
       $this->name = $name;
-      $this->tipWidth = '240';
+      $this->tipWidth = 240;
+      $this->tipX = 5;
+      $this->tipY = 7;
     }
 
     function __clone() {
@@ -117,8 +120,8 @@ if (!class_exists("EzBaseOption")) {
           $warning = '';
         }
         $toolTip = "onmouseover=\"Tip('" . htmlspecialchars($this->title)
-                . "', WIDTH, {$this->tipWidth}, TITLE, '{$this->tipTitle}'"
-                . $warning . ", FIX, [this, 5, 7])\" onmouseout=\"UnTip()\"";
+                . "', WIDTH, $this->tipWidth, TITLE, '$this->tipTitle'"
+                . $warning . ", FIX, [this, $this->tipX, $this->tipY])\" onmouseout=\"UnTip()\"";
       }
       else {
         $toolTip = "";
@@ -163,7 +166,7 @@ if (!class_exists("EzBaseOption")) {
           $ezOptions[$k]->set($value);
         }
         else {
-          $error .= "Cannot find <code>ezOptions[$k]</code><br />";
+          $error .= "Warning: Cannot find <code>ezOptions[$k]</code><br />";
         }
       }
       return $error;
@@ -389,6 +392,7 @@ if (!class_exists("EzBaseOption")) {
     function EzSubmit($name) {
       parent::EzBaseOption('submit', $name);
       $this->value = $this->desc;
+      $this->tipY = 10;
     }
 
     function render() {
@@ -527,7 +531,7 @@ if (!class_exists("EzBasePlugin")) {
 
   class EzBasePlugin {
 
-    var $slug, $domain, $name, $plgDir, $plgURL, $plgFile;
+    var $slug, $domain, $name, $plgDir, $plgURL, $plgFile, $adminMsg;
     var $ezTran, $ezAdmin, $myPlugins;
     var $isPro, $strPro;
     var $options = array(), $ezOptions = array();
@@ -607,13 +611,13 @@ if (!class_exists("EzBasePlugin")) {
 
       $reset = new EzSubmit('resetOptions');
       $reset->desc = __('Reset Options', 'easy-common');
-      $reset->title = __('This <b>Reset Options</b> button discards all your changes and loads the default options. This is your only warning!', 'easy-common');
+      $reset->title = __('This <strong>Reset Options</strong> button discards all your changes and loads the default options. This is your only warning!', 'easy-common');
       $reset->tipWidth = 150;
       $reset->tipWarning = true;
 
       $cleanDB = new EzSubmit('cleanDB');
       $cleanDB->desc = __('Clean Database', 'easy-common');
-      $cleanDB->title = __('The <b>Database Cleanup</b> button discards all your settings for this plugin that you have saved so far for <b>all</b> the themes, including the current one. Use it only if you know that you will not be using these themes. Please be careful with all database operations -- keep a backup.', 'easy-common');
+      $cleanDB->title = __('The <strong>Database Cleanup</strong> button discards <em>all</em> your settings for this plugin that you have saved so far. Please be careful with all database operations -- keep a backup.', 'easy-common');
       $cleanDB->tipWarning = true;
 
       if ($uninstall) {
@@ -655,7 +659,7 @@ if (!class_exists("EzBasePlugin")) {
             $this->options[$k] = $o->get();
           }
           else {
-            if (WP_DEBUG) {
+            if (defined("EZ_DEBUG")) {
               echo "<div class='error'>Warning: <code>option[$k]</code> is not defined, but <code>ezOption[$k]</code> exists!</div>";
             }
           }
@@ -691,9 +695,13 @@ if (!class_exists("EzBasePlugin")) {
       }
     }
 
+    function printProSection() {
+
+    }
+
     function setOptionValues() {
       $error = EzBaseOption::setValues($this->options, $this->ezOptions);
-      if (WP_DEBUG && !empty($error)) {
+      if (defined("EZ_DEBUG") && !empty($error)) {
         echo "<div class='error'>$error</div>";
       }
     }
@@ -763,7 +771,38 @@ if (!class_exists("EzBasePlugin")) {
     }
 
     function adminPrintFooterScripts() { // JS in admin page. Overrirde if needed.
-
+      ?>
+      <script type = "text/javascript">
+        function popupwindow(url, title, w, h) {
+          return ezPopUp(url, title, w, h);
+        }
+        function ezPopUp(url, title, w, h) {
+          var wLeft = window.screenLeft ? window.screenLeft : window.screenX;
+          var wTop = window.screenTop ? window.screenTop : window.screenY;
+          var left = wLeft + (window.innerWidth / 2) - (w / 2);
+          var top = wTop + (window.innerHeight / 2) - (h / 2);
+          window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+          return true;
+        }
+        jQuery(document).ready(function () {
+          jQuery('body').on('click', ".popup", function (e) {
+            e.preventDefault();
+            var url = jQuery(this).attr('href');
+            var title = "Window";
+            var w = 1024;
+            var h = 728;
+            if (jQuery(this).attr('data-height')) {
+              h = jQuery(this).attr('data-height');
+              w = 1000;
+            }
+            if (jQuery(this).attr('data-width')) {
+              w = jQuery(this).attr('data-width');
+            }
+            return ezPopUp(url, title, w, h);
+          });
+        });
+      </script>
+      <?php
     }
 
     function load() { // Runs inits specific to the admin page (JS/CSS etc.)

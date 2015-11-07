@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-ads
 Tags: google adsense, chitika, clicksor, bidvertiser, adsense, google, ads, advertising, ad rotation
 Requires at least: 2.8
 Tested up to: 4.3
-Stable tag: 3.82
+Stable tag: 3.83
 License: GPL2 or later
 
 Easy Ads displays AdSense and its alternatives on your blog pages and sidebar widgets: Chitika, BidVertiser, Clicksor etc. Simple yet flexible.
@@ -57,7 +57,7 @@ The Pro version costs $8.95 and can be [purchased online](http://buy.thulasidas.
 
 == Upgrade Notice ==
 
-Enhancements in the admin interface.
+Refactoring changes.
 
 == Screenshots ==
 
@@ -127,6 +127,7 @@ Yes! In *Easy Ads*, you have more options [through **custom fields**] to control
 
 == Change Log ==
 
+* V3.83: Refactoring changes. [Nov 7, 2015]
 * V3.82: Enhancements in the admin interface. [Oct 17, 2015]
 * V3.81: Documentation changes. [Sep 13, 2015]
 * V3.80: Major changes to fix HTML5 validation errors. [Sep 10, 2015]

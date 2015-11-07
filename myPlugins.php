@@ -90,6 +90,25 @@ $myPlugins['cdn-buster'] = array('value' => 'CDN Buster',
     'title' => '<em><strong>CDN Buster</strong></em> can help you minimize the frustration when your CDN (Amazon Cloudfront, for instance) refuses to pull your newly updated JS or CSS file. All you have to do is to enter the version string in the plugin admin page (and your WP Super Cache or W3 Total Cache admin pages). You will never have to logon to your Amazon (or any other CDN provider) site to manually hunt and invalidate entries.',
     'pro' => 'The Lite version of <em><strong>CDN Buster</strong></em> is fully functional. In the Pro version, you can specify multiple CDN addresses that use the same origin pull location. Moreover, the Pro version will look for any caching plugins you may have on your blog and update their CDN entries automatically! It also gives you more control over the types of files (specified by their extensions) that you want to serve out of the CDN.');
 
+$myPlugins['mobile-cache'] = array('value' => 'Mobile Cache',
+    'price' => '13.95',
+    'share' => false,
+    'long' => false,
+    'blurb' => '<em><strong>Mobile Cache</strong></em> is the only caching plugin specifically designed for mobile devices. This remarkable plugin ',
+    'desc' => 'compresses and minifies your resources into static, optimized files that can be served to mobile devices fast and at the lowest possible data usage.',
+    'title' => '<em><strong>Mobile Cache</strong></em> is the only plugin desgined from ground up with mobile devices in mind.',
+    'pro' => 'If you like <em><strong>Mobile Cache</strong></em> , you will love its Pro version! It brings the same wickedly optimized caching algorithm to desktop browsers as well, and creates independent static caches for desktop, tablets and smart phones with their own customized settings.',
+    'benefits' => '<li>Cache for desktop readers as well, so that they get static, minified/compressed resources.</li>
+<li>Independent caching for tablets, smartphones and destop readers so that the image resizing is optimized to the target browsers.</li>
+<li>Ability to pre-populate the cache so that <strong>Mobile Cache</strong> behaves like a warm cache.</li>
+<li>Ability to use TinyPNG for compression for state-of-the-art image compression.</li>
+<li>Optionally cache RSS feeds.</li>
+<li>Full support for Content Delivery Networks (CDN).</li>
+<li>Integrated CDN cache busting options for easily refreshing off-site content.</li>
+<li>Test mode to serve cached versions to the admin user to verify and benchmark caching.</li>
+<li>Use of RAM (where available) for blazingly fast cache.</li>
+<li>Ability to specify file types to be cached or avoided.</li>');
+
 $myPlugins['google-adsense'] = array('value' => 'Google AdSense',
     'price' => '9.45',
     'share' => true,

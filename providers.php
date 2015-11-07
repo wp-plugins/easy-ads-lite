@@ -691,7 +691,7 @@ if (!class_exists('Overview')) {
 
       echo '<table style="width:80%;margin-left:auto;margin-right:auto;"><tr style="vertical-align:top">';
       $ez = $ezPlugin->ez;
-      include ('head-text.php');
+      $ez->renderHeadText();
       echo '</tr></table>';
 
       echo "<form method='post' action='#'>";

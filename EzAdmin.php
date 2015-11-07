@@ -1,5 +1,4 @@
 <?php
-
 /*
   Copyright (C) 2008 www.ads-ez.com
 
@@ -21,7 +20,7 @@ if (!class_exists('EzAdmin')) {
 
   class EzAdmin {
 
-    var $plgURL, $plgFile, $plg, $slug, $name;
+    var $plgURL, $plgFile, $plg, $slug, $name, $myPlugins;
     var $killAuthor = false;
     var $cdn;
     static $premia = array(array('key' => 'ads-ez',
@@ -42,17 +41,7 @@ if (!class_exists('EzAdmin')) {
       $this->slug = $slug;
       $this->plgURL = $plgURL;
       $this->cdn = $plgURL . 'img';
-    }
-
-    function __destruct() {
-
-    }
-
-    function EzAdmin($plg, $slug, $plgURL) {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct($plg, $slug, $plgURL);
-        register_shutdown_function(array($this, "__destruct"));
-      }
+      require(dirname(__FILE__) . '/myPlugins.php');
     }
 
     function renderNags(&$options) {
@@ -208,6 +197,76 @@ ENDRATING;
     }
 
     function renderHeadText($isPro = false) {
+      ?>
+      <td style="width:20%;max-width:160px">
+        <?php
+        $this->renderAffiliate();
+        $this->renderTipDivs($isPro);
+        ?>
+      </td>
+      <td style="width:25%;max-width:200px">
+        <?php
+        $this->renderProText($isPro);
+        ?>
+      </td>
+      <?php
+    }
+
+    function renderTailText() {
+      if ($this->killAuthor) {
+        return;
+      }
+      ?>
+      <table class="form-table" >
+        <tr>
+          <td>
+            <ul style="padding-left:10px;list-style-type:circle; list-style-position:inside;" >
+              <li>
+                <?php _e('Check out my other plugin and PHP efforts:', 'easy-common'); ?>
+                <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
+
+                  <?php
+                  $myPluginsU = array_unique($this->myPlugins, SORT_REGULAR);
+                  unset($myPluginsU[$this->slug]);
+                  foreach ($myPluginsU as $k => $p) {
+                    if (isset($p['hide']) || isset($p['kind'])) {
+                      unset($myPluginsU[$k]);
+                    }
+                  }
+                  $keys = array_rand($myPluginsU, 3);
+                  foreach ($keys as $name) {
+                    if ($name != $this->slug) {
+                      $this->renderPlg($name, $myPluginsU[$name]);
+                    }
+                  }
+                  ?>
+
+                </ul>
+              </li>
+
+              <li>
+                <?php _e('My Books -- on Physics, Philosophy, making Money etc:', 'easy-common'); ?>
+
+                <ul style="margin-left:0px; padding-left:30px;list-style-type:square; list-style-position:inside;" >
+
+                  <?php
+                  foreach ($this->myPlugins as $name => $plg) {
+                    $this->renderBook($name, $plg);
+                  }
+                  ?>
+
+                </ul>
+              </li>
+
+            </ul>
+
+          </td>
+        </tr>
+      </table>
+      <?php
+    }
+
+    function renderProDiv($isPro = false) {
       $plg = $this->plg;
       $slug = $this->slug;
       $value = '<em><strong>' . $plg['value'] . '</strong></em>';
@@ -244,9 +303,6 @@ $moreInfo
     }
 
     function renderProText($isPro = false) {
-      echo "<div id='pro' style='display:none'>";
-      $this->renderHeadText($isPro);
-      echo "</div>";
       if ($this->killAuthor) {
         return;
       }
@@ -265,14 +321,14 @@ $moreInfo
       $s4 = __('Pro Version', 'easy-common');
       $s5 = __('Buy the Pro Version', 'easy-common');
 
-      echo "<div style='background-color:#ffcccc;padding:5px;border:solid 1px;height:115px;overflow-y:auto;margin:0;width:300px'><div style='font-size:14px;color:#a48;font-variant: small-caps;text-decoration:underline;text-align:center;'><b>$s4</b></div><div  onmouseover=\"TagToTip('pro', WIDTH, 300, TITLE, '$s5',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, -15, -90])\">";
+      echo "<div style='background-color:#ffcccc;padding:5px;border:solid 1px #c99;height:115px;overflow-y:auto;margin:0;width:300px'><div style='font-size:14px;color:#a48;font-variant: small-caps;text-decoration:underline;text-align:center;'><b>$s4</b></div><div  onmouseover=\"TagToTip('pro', WIDTH, 300, TITLE, '$s5',STICKY, 1, CLOSEBTN, true, CLICKCLOSE, true, FIX, [this, -15, -90])\">";
 
       $s8 = sprintf(__('It costs only $%.2f!', 'easy-common'), $price);
       $s9 = __('Instant download link.', 'easy-common');
       if ($isPro) {
         $value .= '<b><i> Pro</i></b>';
         $s6 = sprintf(__("You are enjoying $value with \"Pro\" features.", 'easy-common'), $value);
-        $s7 = __("Please consider buying it, if you haven't already paid for it.", 'easy-common');
+        $s7 = __("Consider buying it, if you haven't already paid for it.", 'easy-common');
         echo "$s6 $s7 <a href='http://buy.thulasidas.com/$slug' title='$s3. $s9' $onclick>$s8</a></div><br><div style='text-align:center;'>[<strong onmouseover=\"Tip('Other Premium Plugins from the same author')\" onmouseout=\"UnTip()\"><a href='http://www.thulasidas.com/plugins' class='popup' data-height='1024' data-width='1200' target='_blank'>Other Plugins</a></strong>]</div>";
       }
       else {
@@ -297,11 +353,10 @@ $moreInfo
       if ($this->killAuthor) {
         return;
       }
-      require(dirname(__FILE__) . '/myPlugins.php');
 
       $plg = $this->myPlugins[$slug];
 
-      echo "<div id='premium-$slug' style='display:none'><a href='http://www.thulasidas.com/$slug' target='_blank' class='popup' data-height='1024'><img src='{$this->cdn}/plg-$slug.jpg' style='border: solid 1px;vertical-align:bottom;max-width:100%' alt='Another Premium Plugin the this Author' /></a><br><br>";
+      echo "<div id='premium-$slug' style='display:none'><a href='http://www.thulasidas.com/$slug' target='_blank' class='popup' data-height='1024'><img src='{$this->cdn}/plg-$slug.jpg' style='border: solid 1px #888;vertical-align:bottom;max-width:100%' alt='Another Premium Plugin the this Author' /></a><br><br>";
       $value = '<em><strong>' . $plg['value'] . '</strong></em>';
       $toolTip = $plg['title'];
       $price = $plg['price'];
@@ -345,11 +400,14 @@ $moreInfo
       }
       else {
         extract(self::$premia[$roll]);
-        echo "<div style='padding:0px;border:none;text-align:center' id='premium'><a href='http://www.thulasidas.com/$key' target='_blank' class='popup' data-height='1024' onmouseover=\"TagToTip('premium-$key', WIDTH, 295, TITLE, '$desc', FIX, [this, -65, -30], CLICKCLOSE, true, CLOSEBTN, true)\" ><img src='{$this->cdn}/plg-$key.jpg' style='border: solid 1px;vertical-align:bottom;max-width:150px' alt='$name - Another Premium Plugin the this Author' /></a></div>";
+        echo "<div style='padding:0px;border:none;text-align:center' id='premium'><a href='http://www.thulasidas.com/$key' target='_blank' class='popup' data-height='1024' onmouseover=\"TagToTip('premium-$key', WIDTH, 295, TITLE, '$desc', FIX, [this, -65, -30], CLICKCLOSE, true, CLOSEBTN, true)\" ><img src='{$this->cdn}/plg-$key.jpg' style='border: solid 1px #888;vertical-align:bottom;max-width:150px' alt='$name - Another Premium Plugin the this Author' /></a></div>";
       }
     }
 
-    function renderTipDivs() {
+    function renderTipDivs($isPro) {
+      echo "<div id='pro' style='display:none'>";
+      $this->renderProDiv($isPro);
+      echo "</div>";
       echo <<<ENDDIVS
 <span id="proservices" style='display:none;'>
 The author of this plugin may be able to help you with your WordPress or plugin customization needs and other PHP related development. <a href='http://www.thulasidas.com/professional-php-services/' target='_blank'>Contact me</a> if you find a plugin that almost, but not quite, does what you are looking for, or if you need any other professional services. If you would like to see my credentials, take a look at <a href='http://www.thulasidas.com/col/Manoj-CV.pdf' target='_blank'>my CV</a>.
@@ -485,7 +543,7 @@ ENDDIVS;
     }
 
     function renderSupport() {
-      echo '<div style="background-color:#fdf;padding:5px;border: solid 1px;margin:5px;">
+      echo '<div style="background-color:#fdf;padding:5px;border: solid 1px #caf;margin:5px;">
 ';
       $plg = $this->plg;
       $slug = $this->slug;
@@ -533,7 +591,7 @@ ENDDIVS;
       $moreInfo = " &nbsp;  &nbsp; <a href='$infoURL' title='$s2' target=_blank class='popup' data-height='1024'> $s4 </a>&nbsp; <a href='$buyURL' $onclick title='$s3'>Get Pro Version</a>";
       $toolTip .= addslashes('<br />' . $moreInfo);
       $why = addslashes($plg['pro']);
-      echo '<div style="background-color:#dff;padding:5px;border: solid 1px;margin:5px;padding-bottom:15px;">';
+      echo '<div style="background-color:#dff;padding:5px;border: solid 1px #abb;margin:5px;padding-bottom:15px;">';
       if ($short) {
         $s5 = __('Buy the Pro Version', 'easy-common');
         $s6 = __('More features, more power!', 'easy-common');
